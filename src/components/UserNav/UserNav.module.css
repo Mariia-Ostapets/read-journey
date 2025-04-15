@@ -1,0 +1,40 @@
+.userNavWrapper {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 1280px) {
+  .userNavWrapper {
+    gap: 40px;
+  }
+}
+
+.link {
+  font-size: 16px;
+  line-height: 1.13;
+  color: var(--primary-color-gray);
+  position: relative;
+  transition: color var(--primary-transition);
+}
+
+.active {
+  color: var(--primary-color-white);
+}
+
+.link:hover,
+.link:focus {
+  color: var(--primary-color-white);
+}
+
+.active::after {
+  position: absolute;
+  display: block;
+  content: '';
+  background-color: var(--accent-color-blue);
+  border-radius: 8px;
+  width: 72px;
+  height: 4px;
+  bottom: -8px;
+}

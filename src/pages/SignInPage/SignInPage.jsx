@@ -1,39 +1,29 @@
-import { useEffect, useState } from 'react';
 import css from './SignInPage.module.css';
 import { Link } from 'react-router-dom';
-
-function shouldRenderBgrWrapper() {
-  const width = window.innerWidth;
-  return width <= 768 || width >= 1280;
-}
+import { useDeviceType } from '../../hooks/index.js';
+import SignInForm from '../../components/SignInForm/SignInForm.jsx';
 
 export default function SignInPage() {
-  const [showBgrWrapper, setShowBgrWrapper] = useState(
-    shouldRenderBgrWrapper()
-  );
+  const deviceType = useDeviceType();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setShowBgrWrapper(shouldRenderBgrWrapper());
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const showBgrWrapper = deviceType === 'mobile' || deviceType === 'desktop';
 
   return (
     <>
-      <div className={css.headerWrapper}>
-        <header>
-          <Link to="/login" className={css.logo}>
-            <svg width={42} height={17}>
-              <use href="/sprite.svg#icon-logo"></use>
-            </svg>
-          </Link>
-        </header>
-      </div>
+      <div className={css.signUpPageWrapper}>
+        <div className={css.headerWrapper}>
+          <header>
+            <Link to="/login" className={css.logo}>
+              <svg width={42} height={17}>
+                <use href="/sprite.svg#icon-logo"></use>
+              </svg>
+            </Link>
+          </header>
+          <SignInForm />
+        </div>
 
-      {showBgrWrapper && <div className={css.headerBgrWrapper}></div>}
+        {showBgrWrapper && <div className={css.bgrWrapper}></div>}
+      </div>
     </>
   );
 }

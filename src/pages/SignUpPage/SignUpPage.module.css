@@ -1,0 +1,57 @@
+.signUpPageWrapper {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .signUpPageWrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.headerWrapper {
+  border-radius: 30px;
+  background-color: var(--primary-bgr-color-gray);
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
+}
+
+.bgrWrapper {
+  background-image: url(../../assets/images/hero-mob.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 30px;
+  width: 335px;
+  height: 351px;
+}
+
+@media screen and (min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx) {
+  .bgrWrapper {
+    background-image: url(../../assets/images/hero-mob@2x.png);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bgrWrapper {
+    background-image: url(../../assets/images/hero-desk.png);
+    width: 600px;
+    height: 738px;
+  }
+
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    .bgrWrapper {
+      background-image: url(../../assets/images/hero-desk@2x.png);
+    }
+  }
+}
