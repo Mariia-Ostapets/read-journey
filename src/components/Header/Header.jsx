@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import UserNav from '../UserNav/UserNav';
 import UserBar from '../UserBar/UserBar';
 import css from './Header.module.css';
-import { useDeviceType } from '../../hooks';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function Header() {
   const deviceType = useDeviceType();

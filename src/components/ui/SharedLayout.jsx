@@ -1,16 +1,20 @@
-import { shouldShowHeader } from '../../utils';
+import { useShouldRender } from '../../hooks/useShouldRender';
 import Header from '../Header/Header';
 import Container from './Container/Container';
 import Loader from './Loader/Loader';
 import { Suspense } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 export default function SharedLayout() {
-  const { pathname } = useLocation();
+  const shouldShowHeader = useShouldRender([
+    '/recommended',
+    '/library',
+    /^\/reading\/[^/]+$/,
+  ]);
 
   return (
     <>
-      {shouldShowHeader(pathname) && <Header />}
+      {shouldShowHeader && <Header />}
 
       <main>
         <Container>
