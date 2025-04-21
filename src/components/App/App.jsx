@@ -10,7 +10,7 @@ import {
   selectIsLoading,
   selectIsRefreshing,
 } from '../../redux/auth/selectors.js';
-import { refreshUser } from '../../redux/auth/operations.js';
+import { getCurrentUser } from '../../redux/auth/operations.js';
 
 const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage'));
@@ -30,7 +30,7 @@ export default function App() {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(getCurrentUser());
   }, [dispatch]);
 
   return (

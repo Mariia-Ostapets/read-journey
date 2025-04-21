@@ -4,16 +4,6 @@ import api, {
   clearAuthHeader,
 } from '../../api/axiosInstance.js';
 
-// axios.defaults.baseURL = 'https://readjourney.b.goit.study/api';
-
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
-
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
@@ -58,34 +48,42 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
+export const getCurrentUser = createAsyncThunk(
+  'auth/current',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return thunkAPI.rejectWithValue('Token is not available');
     }
+    setAuthHeader(persistedToken);
     try {
-      setAuthHeader(persistedToken);
       const res = await api.get('/users/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.refreshToken;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('No refresh token');
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const res = await api.get('/users/current/refresh');
+      const newToken = res.data.token;
+      setAuthHeader(newToken);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// export const refreshToken = createAsyncThunk(
-//   'auth/refreshToken',
-//   async (_, thunkAPI) => {
-//     try {
-//       const res = await api.get('/users/current/refresh');
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const clearError = createAction('auth/clearError');

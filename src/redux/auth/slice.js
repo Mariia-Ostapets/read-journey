@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser, clearError } from './operations';
+import {
+  register,
+  logIn,
+  logOut,
+  clearError,
+  getCurrentUser,
+  refreshToken,
+} from './operations';
 
 const handlePending = state => {
   state.loading = true;
@@ -17,6 +24,7 @@ const initialState = {
     email: null,
   },
   token: null,
+  refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
   loading: false,
@@ -33,6 +41,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, handleRejected)
@@ -41,6 +50,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
         state.error = null;
       })
@@ -53,13 +63,38 @@ const authSlice = createSlice({
         return initialState;
       })
       .addCase(logOut.rejected, handleRejected)
-      .addCase(refreshUser.pending, handlePending)
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+      .addCase(getCurrentUser.pending, handlePending)
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.error = null;
       })
-      .addCase(refreshUser.rejected, handleRejected);
+      .addCase(getCurrentUser.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isRefreshing = false;
+        state.isLoggedIn = false;
+      })
+      .addCase(refreshToken.pending, state => {
+        state.isRefreshing = true;
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.isRefreshing = false;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(refreshToken.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
