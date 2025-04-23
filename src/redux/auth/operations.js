@@ -61,7 +61,19 @@ export const getCurrentUser = createAsyncThunk(
       const res = await api.get('/users/current');
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.status);
+      if (error.response?.status === 401) {
+        // 🔁 Пробуємо оновити токен
+        const refreshResult = await thunkAPI.dispatch(refreshToken());
+        if (refreshResult.meta.requestStatus === 'fulfilled') {
+          const newToken = refreshResult.payload.token;
+          setAuthHeader(newToken);
+          // 📦 Повторно пробуємо отримати юзера
+          const retryRes = await api.get('/users/current');
+          return retryRes.data;
+        }
+      }
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
