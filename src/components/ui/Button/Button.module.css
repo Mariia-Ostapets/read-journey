@@ -22,6 +22,7 @@
   color: var(--primary-bgr-color-gray);
   background-color: var(--primary-color-white);
   border: none;
+  margin-top: 20px;
 }
 
 .registrationBtn {

@@ -1,4 +1,4 @@
-.signUpPageWrapper {
+.signPageWrapper {
   display: flex;
   gap: 16px;
   justify-content: center;
@@ -6,13 +6,13 @@
 }
 
 @media screen and (max-width: 767px) {
-  .signUpPageWrapper {
+  .signPageWrapper {
     flex-direction: column;
     gap: 10px;
   }
 }
 
-.headerWrapper {
+.signWrapper {
   border-radius: 30px;
   background-color: var(--primary-bgr-color-gray);
   margin: 0 auto;
@@ -20,6 +20,39 @@
   padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 40px;
+}
+
+@media screen and (min-width: 1280px) {
+  .signWrapper {
+    width: 50%;
+  }
+}
+
+.signHeader {
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .signHeader {
+    margin-bottom: 157px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .signHeader {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-bottom: 107px;
+  }
+}
+
+.logoText {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.02em;
 }
 
 .bgrWrapper {
@@ -30,6 +63,12 @@
   border-radius: 30px;
   width: 335px;
   height: 351px;
+}
+
+@media screen and (min-width: 1280px) {
+  .bgrWrapper {
+    width: 50%;
+  }
 }
 
 @media screen and (min-device-pixel-ratio: 2),
