@@ -15,11 +15,13 @@ export default function Button({ children, type, variant, ...rest }) {
           (variant === 'addToLibrary' && css.addToLibraryBtn) ||
           (variant === 'start' && css.startBtn) ||
           (variant === 'stop' && css.stopBtn) ||
-          (variant === 'pagination' && css.paginationBtn) ||
-          (variant === 'closeModalAndMobMenu' && css.closeModalAndMobMenuBtn) ||
+          (variant === 'paginationLeft' && css.paginationBtn) ||
+          (variant === 'paginationRight' && css.paginationBtn) ||
+          (variant === 'closeModal' && css.closeModalBtn) ||
+          (variant === 'closeMobMenu' && css.closeMobMenuBtn) ||
           (variant === 'burger' && css.burgerBtn) ||
-          (variant === 'deleteBook' && css.deleteBook) ||
-          (variant === 'deleteDairyItem' && css.deleteDairyItem)
+          (variant === 'deleteBook' && css.deleteBookBtn) ||
+          (variant === 'deleteDairyItem' && css.deleteDairyItemBtn)
       )}
       {...rest}
     >

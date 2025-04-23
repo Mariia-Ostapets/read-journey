@@ -27,13 +27,11 @@
 .registrationBtn {
   padding-left: 29px;
   padding-right: 29px;
-  /* width: 140px; */
 }
 
 .logInBtn {
   padding-left: 45px;
   padding-right: 45px;
-  /* width: 131px; */
 }
 
 @media screen and (min-width: 768px) {
@@ -44,14 +42,6 @@
     font-size: 20px;
     line-height: 1;
   }
-
-  /* .registrationBtn {
-    width: 225px;
-  }
-
-  .logInBtn {
-    width: 166px;
-  } */
 }
 
 .registrationBtn:hover,
@@ -70,18 +60,6 @@
   height: 38px;
 }
 
-/* .applyBtn {
-  width: 98px;
-}
-
-.logOutBtn {
-  width: 91px;
-}
-
-.addBookBtn {
-  width: 105px;
-} */
-
 @media screen and (min-width: 768px) {
   .applyBtn,
   .logOutBtn,
@@ -91,27 +69,90 @@
     font-size: 16px;
     line-height: 1.13;
   }
-
-  /* .applyBtn {
-    width: 122px;
-  }
-
-  .logOutBtn {
-    width: 114px;
-  }
-
-  .addBookBtn {
-    width: 131px;
-  } */
 }
 
 .applyBtn:hover,
 .logOutBtn:hover,
 .addBookBtn:hover,
+.addToLibraryBtn:hover,
+.startBtn:hover,
+.stopBtn:hover,
 .applyBtn:focus,
 .logOutBtn:focus,
-.addBookBtn:focus {
+.addBookBtn:focus,
+.addToLibraryBtn:focus,
+.startBtn:focus,
+.stopBtn:focus {
   border: none;
   color: var(--primary-bgr-color-gray);
   background-color: var(--primary-color-white);
+}
+
+.addToLibraryBtn {
+  padding: 12px 24px;
+  height: 42px;
+}
+
+@media screen and (min-width: 768px) {
+  .addToLibraryBtn {
+    padding: 14px 28px;
+    height: 46px;
+    font-size: 16px;
+    line-height: 1.13;
+  }
+}
+
+.startBtn,
+.stopBtn {
+  padding: 10px 20px;
+  height: 38px;
+}
+
+@media screen and (min-width: 768px) {
+  .startBtn,
+  .stopBtn {
+    padding: 12px 28px;
+    height: 42px;
+    font-size: 16px;
+    line-height: 1.13;
+  }
+}
+
+.paginationBtn {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginationBtnIcon {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .paginationBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .paginationBtnIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.closeModalBtn,
+.closeMobMenuBtn,
+.burgerBtn,
+.deleteBookBtn,
+.deleteDairyItemBtn {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 0;
 }

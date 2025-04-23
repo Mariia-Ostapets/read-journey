@@ -36,6 +36,50 @@ export default function SignInPage() {
           <Button type="submit" variant="addBook">
             Add book
           </Button>
+          <Button type="submit" variant="addToLibrary">
+            Add to library
+          </Button>
+          <Button type="submit" variant="start">
+            To start
+          </Button>
+          <Button type="submit" variant="stop">
+            To stop
+          </Button>
+          <Button type="button" variant="paginationLeft">
+            <svg className={css.paginationBtnIcon}>
+              <use href="/sprite.svg#icon-chevron-left"></use>
+            </svg>
+          </Button>
+          <Button type="button" variant="paginationRight">
+            <svg className={css.paginationBtnIcon}>
+              <use href="/sprite.svg#icon-chevron-right"></use>
+            </svg>
+          </Button>
+          <Button type="button" variant="closeModal">
+            <svg width={22} height={22}>
+              <use href="/sprite.svg#icon-close"></use>
+            </svg>
+          </Button>
+          <Button type="button" variant="closeMobMenu">
+            <svg width={28} height={28}>
+              <use href="/sprite.svg#icon-close"></use>
+            </svg>
+          </Button>
+          <Button type="button" variant="burger">
+            <svg width={28} height={28}>
+              <use href="/symbol-defs.svg#icon-burger"></use>
+            </svg>
+          </Button>
+          <Button type="button" variant="deleteBook">
+            <svg width={28} height={28}>
+              <use href="/sprite.svg#icon-trash-block"></use>
+            </svg>
+          </Button>
+          <Button type="button" variant="deleteDairyItem">
+            <svg width={14} height={14}>
+              <use href="/sprite.svg#icon-trash"></use>
+            </svg>
+          </Button>
         </div>
 
         {showBgrWrapper && <div className={css.bgrWrapper}></div>}
