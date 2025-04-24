@@ -2,7 +2,6 @@ import css from './SignInPage.module.css';
 import { Link } from 'react-router-dom';
 import { useDeviceType } from '../../hooks/useDeviceType.js';
 import SignInForm from '../../components/SignInForm/SignInForm.jsx';
-import Button from '../../components/ui/Button/Button.jsx';
 
 export default function SignInPage() {
   const deviceType = useDeviceType();
@@ -25,14 +24,7 @@ export default function SignInPage() {
               </Link>
             )}
           </header>
-          <h1 className={css.signTitle}>
-            Expand your mind, reading{' '}
-            <span className={css.signTitleAccentWord}>a book</span>
-          </h1>
           <SignInForm />
-          <Button type="submit" variant="logIn">
-            Log in
-          </Button>
         </div>
 
         {showBgrWrapper && <div className={css.bgrWrapper}></div>}
