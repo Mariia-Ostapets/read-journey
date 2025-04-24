@@ -7,14 +7,14 @@ const Notification = () => {
       toastOptions={{
         success: {
           style: {
-            color: 'var(--primary-color-blue)',
-            backgroundColor: 'var(--primary-color-gray-light)',
+            color: 'var(--accent-color-blue)',
+            backgroundColor: 'var(--primary-color-white)',
             fontWeight: 'bold',
             padding: '8px 30px',
             borderRadius: '10px',
           },
           iconTheme: {
-            primary: 'var(--primary-color-blue)',
+            primary: 'var(--accent-color-blue)',
             secondary: 'var(--primary-color-white)',
           },
           duration: 3000,
@@ -22,14 +22,14 @@ const Notification = () => {
         error: {
           style: {
             color: 'var(--primary-color-white)',
-            backgroundColor: 'var(--secondary-color-red)',
+            backgroundColor: 'var(--accent-color-red)',
             fontWeight: 'bold',
             padding: '8px 30px',
             borderRadius: '10px',
           },
           iconTheme: {
             primary: 'var(--primary-color-white)',
-            secondary: 'var(--secondary-color-red)',
+            secondary: 'var(--accent-color-red)',
           },
           duration: 3000,
         },

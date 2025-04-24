@@ -8,16 +8,19 @@ import * as yup from 'yup';
 import { register } from '../../redux/auth/operations';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
   email: yup
     .string()
-    .matches(
-      /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
-      'Email must match pattern: Your@email.com'
-    )
-    .required('Email is required'),
+    .trim()
+    .required('Email is required')
+    .test(
+      'is-valid-email',
+      'Email must match pattern: Your@email.com',
+      value => !value || /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value)
+    ),
   password: yup
     .string()
     .required('Password is required')
@@ -50,6 +53,7 @@ export default function SignUpForm() {
   const onSubmit = async data => {
     try {
       await dispatch(register(data)).unwrap();
+      toast.success('User successfully registered!');
     } catch (error) {
       console.error(error);
     }

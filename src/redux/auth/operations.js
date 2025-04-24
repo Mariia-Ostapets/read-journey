@@ -3,6 +3,7 @@ import api, {
   setAuthHeader,
   clearAuthHeader,
 } from '../../api/axiosInstance.js';
+import toast from 'react-hot-toast';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -12,12 +13,12 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      if (error.response && error.response.data.code === 11000) {
-        const existingEmail = error.response.data.keyValue.email;
-        return thunkAPI.rejectWithValue(
-          `Email ${existingEmail} is already in use`
-        );
+      if (error.response && error.response.status === 409) {
+        const message = error.response.data.message;
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
       }
+      toast.error('Registration error. Please try again later.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
