@@ -19,6 +19,30 @@
   color: var(--secondary-color-gray-alpha);
 }
 
+.inputWrapper {
+  position: relative;
+}
+
+.formLabel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 14px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  color: var(--primary-color-gray);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .formLabel {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+}
+
 .inputName,
 .inputEmail,
 .inputPwd {
@@ -27,44 +51,13 @@
   background-color: var(--secondary-bgr-color-gray);
   border: none;
   border-radius: 12px;
-  padding: 14px;
+  padding-block: 14px;
   width: 100%;
-  height: 44px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.02em;
   color: var(--primary-color-white);
-}
-
-.inputName,
-.inputEmail {
-  margin-bottom: 8px;
-}
-
-.inputWrapper {
-  position: relative;
-}
-
-.inputName:hover,
-.inputName:focus,
-.inputEmail:hover,
-.inputEmail:focus,
-.inputPwd:hover,
-.inputPwd:focus {
-  border: 1px solid rgba(249, 249, 249, 0.1);
-}
-
-.formLabel {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33333;
-  letter-spacing: -0.02em;
-  text-align: center;
-  color: var(--primary-color-gray);
 }
 
 .inputName {
@@ -73,10 +66,36 @@
 
 .inputEmail {
   padding-left: 49px;
+  margin-top: 8px;
 }
 
 .inputPwd {
   padding-left: 78px;
+  margin-top: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .inputName,
+  .inputEmail,
+  .inputPwd {
+    padding-block: 16px;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .inputName {
+    padding-left: 65px;
+  }
+
+  .inputEmail {
+    padding-left: 53px;
+    margin-top: 14px;
+  }
+
+  .inputPwd {
+    padding-left: 86px;
+    margin-top: 14px;
+  }
 }
 
 .inputName::placeholder,
@@ -85,25 +104,54 @@
   color: var(--primary-color-white);
 }
 
-.errorMessage {
-  font-size: 10px;
-  color: var(--accent-color-red);
+.inputName:hover:not(.inputValid):not(.inputInvalid),
+.inputName:focus:not(.inputValid):not(.inputInvalid),
+.inputEmail:hover:not(.inputValid):not(.inputInvalid),
+.inputEmail:focus:not(.inputValid):not(.inputInvalid),
+.inputPwd:hover:not(.inputValid):not(.inputInvalid),
+.inputPwd:focus:not(.inputValid):not(.inputInvalid) {
+  border: 1px solid rgba(249, 249, 249, 0.1);
+}
+
+.errorMessage,
+.successMessage {
   font-size: 10px;
   line-height: 1.2;
   padding-left: 14px;
-  margin-block: 4px;
+  padding-top: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .errorMessage,
+  .successMessage {
+    font-size: 12px;
+    line-height: 1.17;
+    padding-left: 14px;
+    padding-top: 8px;
+  }
+}
+
+.errorMessage {
+  color: var(--accent-color-red);
+}
+
+.successMessage {
+  color: var(--accent-color-green);
 }
 
 .formIcon {
   position: absolute;
-  top: 13px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 16px;
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
   .formIcon {
+    right: 18px;
     width: 20px;
     height: 20px;
   }
@@ -117,27 +165,54 @@
   border: 1px solid var(--accent-color-red);
 }
 
-.icon {
+.iconValidation {
   position: absolute;
   top: 50%;
-  right: 42px;
+  right: 16px;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
   pointer-events: none;
 }
 
-.iconValid {
-  fill: var(--accent-color-green);
-}
-
-.iconInvalid {
-  fill: var(--accent-color-red);
+.inputWrapper:has(.iconValidation) .formIcon {
+  right: 46px;
 }
 
 @media screen and (min-width: 768px) {
-  .icon {
+  .iconValidation {
+    right: 18px;
     width: 20px;
     height: 20px;
+  }
+
+  .inputWrapper:has(.iconValidation) .formIcon {
+    right: 48px;
+  }
+}
+
+.btnAndLinkWrapper {
+  margin-top: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.linkText {
+  font-size: 12px;
+  line-height: 1.17;
+  text-decoration: underline;
+  color: var(--primary-color-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .btnAndLinkWrapper {
+    gap: 20px;
+    margin-top: 82px;
+  }
+
+  .linkText {
+    font-size: 14px;
+    line-height: 1.29;
   }
 }

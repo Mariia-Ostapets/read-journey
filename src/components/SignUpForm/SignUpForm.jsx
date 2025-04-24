@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { register } from '../../redux/auth/operations';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -59,14 +60,14 @@ export default function SignUpForm() {
   const renderIcon = (isValid, hasError) => {
     if (isValid) {
       return (
-        <svg className={clsx(css.icon, css.iconValid)}>
+        <svg className={css.iconValidation}>
           <use href="/sprite.svg#icon-check" />
         </svg>
       );
     }
     if (hasError) {
       return (
-        <svg className={clsx(css.icon, css.iconInvalid)}>
+        <svg className={css.iconValidation}>
           <use href="/sprite.svg#icon-error" />
         </svg>
       );
@@ -97,7 +98,7 @@ export default function SignUpForm() {
           })}
           id={nameId}
           type="text"
-          placeholder="Mariia Ostapets"
+          placeholder="Your name"
           {...formRegister('name')}
         />
         {renderIcon(isValidName, errors.name)}
@@ -121,7 +122,7 @@ export default function SignUpForm() {
         />
         {renderIcon(isValidEmail, errors.email)}
       </div>
-      {isValidEmail && <p className={css.successMessage}>Mail is secured</p>}
+      {isValidEmail && <p className={css.successMessage}>Mail is secure</p>}
       {errors.email && (
         <p className={css.errorMessage}>{errors.email.message}</p>
       )}
@@ -146,14 +147,19 @@ export default function SignUpForm() {
         {renderIcon(isValidPassword, errors.password)}
       </div>
       {isValidPassword && (
-        <p className={css.successMessage}>Password is secured</p>
+        <p className={css.successMessage}>Password is secure</p>
       )}
       {errors.password && (
         <p className={css.errorMessage}>{errors.password.message}</p>
       )}
-      <Button type="submit" variant="registration">
-        Registration
-      </Button>
+      <div className={css.btnAndLinkWrapper}>
+        <Button type="submit" variant="registration">
+          Registration
+        </Button>
+        <Link to="/login" className={css.linkText}>
+          Already have an account?
+        </Link>
+      </div>
     </form>
   );
 }

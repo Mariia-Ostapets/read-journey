@@ -22,9 +22,21 @@
   padding-bottom: 40px;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .signWrapper {
+    padding-left: 64px;
+    padding-top: 40px;
+    padding-right: 168px;
+    padding-bottom: 214px;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .signWrapper {
     width: 50%;
+    padding-left: 64px;
+    padding-top: 40px;
+    padding-right: 64px;
   }
 }
 
