@@ -3,9 +3,18 @@ import UserNav from '../UserNav/UserNav';
 import UserBar from '../UserBar/UserBar';
 import css from './Header.module.css';
 import { useDeviceType } from '../../hooks/useDeviceType';
+import Button from '../ui/Button/Button';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/operations';
 
 export default function Header() {
   const deviceType = useDeviceType();
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = async () => {
+    dispatch(logOut());
+  };
 
   return (
     <>
@@ -23,6 +32,9 @@ export default function Header() {
       </div>
       {deviceType !== 'mobile' && <UserNav />}
       <UserBar />
+      <Button type="submit" variant="logOut" onClick={handleLogOut}>
+        Log out
+      </Button>
     </>
   );
 }
