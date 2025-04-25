@@ -50,7 +50,7 @@ export default function SignUpForm() {
   const onSubmit = async data => {
     try {
       await dispatch(logIn(data)).unwrap();
-      toast.success('User successfully rlogged in!');
+      toast.success('User was successfully logged in!');
     } catch (error) {
       console.error(error);
     }

@@ -53,7 +53,7 @@ export default function SignUpForm() {
   const onSubmit = async data => {
     try {
       await dispatch(register(data)).unwrap();
-      toast.success('User successfully registered!');
+      toast.success('User was successfully registered!');
     } catch (error) {
       console.error(error);
     }

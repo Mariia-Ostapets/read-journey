@@ -2,7 +2,8 @@
   display: flex;
   gap: 16px;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  height: 100vh;
 }
 
 @media screen and (max-width: 767px) {
@@ -71,6 +72,7 @@
   background-image: url(../../assets/images/hero-mob.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
   overflow: hidden;
   border-radius: 30px;
   width: 335px;
@@ -80,6 +82,19 @@
 @media screen and (min-width: 1280px) {
   .bgrWrapper {
     width: 50%;
+    position: relative;
+  }
+
+  .bgrWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    height: 100%;
+    display: block;
   }
 }
 
@@ -95,7 +110,9 @@
   .bgrWrapper {
     background-image: url(../../assets/images/hero-desk.png);
     width: 600px;
-    height: 738px;
+    /* height: 738px; */
+    /* min-height: 738px; */
+    height: 100%;
   }
 
   @media screen and (min-device-pixel-ratio: 2),

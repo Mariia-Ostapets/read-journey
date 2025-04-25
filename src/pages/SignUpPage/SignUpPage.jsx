@@ -2,7 +2,6 @@ import css from './SignUpPage.module.css';
 import { Link } from 'react-router-dom';
 import { useDeviceType } from '../../hooks/useDeviceType.js';
 import SignUpForm from '../../components/SignUpForm/SignUpForm.jsx';
-import Button from '../../components/ui/Button/Button.jsx';
 
 export default function SignUpPage() {
   const deviceType = useDeviceType();

@@ -28,13 +28,15 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const res = await api.post('/users/login', credentials);
+      const res = await api.post('/users/signin', credentials);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
+        toast.error('Incorrect email or password');
         return thunkAPI.rejectWithValue('Incorrect email or password');
       }
+      toast.error('Log in error. Please try again later.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,7 +44,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await api.post('/users/logout');
+    await api.post('/users/signout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -63,12 +65,10 @@ export const getCurrentUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       if (error.response?.status === 401) {
-        // 🔁 Пробуємо оновити токен
         const refreshResult = await thunkAPI.dispatch(refreshToken());
         if (refreshResult.meta.requestStatus === 'fulfilled') {
           const newToken = refreshResult.payload.token;
           setAuthHeader(newToken);
-          // 📦 Повторно пробуємо отримати юзера
           const retryRes = await api.get('/users/current');
           return retryRes.data;
         }

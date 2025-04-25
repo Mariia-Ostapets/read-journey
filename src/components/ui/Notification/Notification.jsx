@@ -7,14 +7,14 @@ const Notification = () => {
       toastOptions={{
         success: {
           style: {
-            color: 'var(--accent-color-blue)',
-            backgroundColor: 'var(--primary-color-white)',
+            color: 'var(--primary-color-white)',
+            backgroundColor: 'var(--accent-color-green)',
             fontWeight: 'bold',
             padding: '8px 30px',
             borderRadius: '10px',
           },
           iconTheme: {
-            primary: 'var(--accent-color-blue)',
+            primary: 'var(--accent-color-green)',
             secondary: 'var(--primary-color-white)',
           },
           duration: 3000,
