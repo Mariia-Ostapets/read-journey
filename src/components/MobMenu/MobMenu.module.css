@@ -1,0 +1,31 @@
+.mobMenuBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--secondary-bgr-color-gray-backdrop);
+  z-index: 50;
+}
+
+.mobMenuWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: var(--secondary-bgr-color-gray);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 280px 54px 40px 53px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform var(--primary-transition);
+}
+
+.mobMenuWrapper.open {
+  transform: translateX(0);
+}

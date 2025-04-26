@@ -7,14 +7,26 @@ import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import Container from '../ui/Container/Container';
+import { useState } from 'react';
+import MobMenu from '../MobMenu/MobMenu';
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const deviceType = useDeviceType();
 
   const dispatch = useDispatch();
 
   const handleLogOut = async () => {
     dispatch(logOut());
+  };
+
+  const toggleMenu = () => {
+    setIsOpen(prevState => !prevState);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -37,7 +49,7 @@ export default function Header() {
           <div className={css.userBarAndBtnWrapper}>
             <UserBar />
             {deviceType === 'mobile' && (
-              <Button type="submit" variant="burger">
+              <Button type="submit" variant="burger" onClick={toggleMenu}>
                 <svg width={28} height={28}>
                   <use href="/sprite.svg#icon-burger"></use>
                 </svg>
@@ -51,6 +63,9 @@ export default function Header() {
           </div>
         </div>
       </header>
+      {deviceType === 'mobile' && isOpen && (
+        <MobMenu onClose={closeMenu} isOpen={isOpen} />
+      )}
     </Container>
   );
 }

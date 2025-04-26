@@ -156,3 +156,9 @@
   border: none;
   padding: 0;
 }
+
+.closeMobMenuBtn {
+  position: absolute;
+  top: 34px;
+  right: 40px;
+}
