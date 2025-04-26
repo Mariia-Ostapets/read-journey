@@ -1,3 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 11px;
+  border-radius: 15px;
+  background-color: var(--primary-bgr-color-gray);
+}
+
 .logoWrapper {
   display: flex;
   gap: 4px;
@@ -11,4 +20,30 @@
   font-size: 18px;
   line-height: 1;
   letter-spacing: 0.02em;
+}
+
+.userBarAndBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .userBarAndBtnWrapper {
+    gap: 16px;
+  }
+}
+
+.userNavUserBarBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 94px;
+}
+
+@media screen and (min-width: 1280px) {
+  .userNavUserBarBtnWrapper {
+    gap: 219px;
+  }
 }

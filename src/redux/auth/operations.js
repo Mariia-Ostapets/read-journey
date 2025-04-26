@@ -30,6 +30,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await api.post('/users/signin', credentials);
       setAuthHeader(res.data.token);
+      console.log('Register response:', res.data);
       return res.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {

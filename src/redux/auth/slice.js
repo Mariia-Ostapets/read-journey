@@ -19,10 +19,8 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
-  user: {
-    name: null,
-    email: null,
-  },
+  name: null,
+  email: null,
   token: null,
   refreshToken: null,
   isLoggedIn: false,
@@ -39,7 +37,8 @@ const authSlice = createSlice({
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
@@ -48,7 +47,8 @@ const authSlice = createSlice({
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
@@ -64,7 +64,8 @@ const authSlice = createSlice({
       })
       .addCase(logOut.rejected, (state, action) => {
         state.loading = false;
-        state.user = null;
+        state.name = null;
+        state.email = null;
         state.token = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
@@ -80,7 +81,8 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;

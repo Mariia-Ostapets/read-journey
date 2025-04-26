@@ -1,0 +1,34 @@
+.userBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.userAvatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--secondary-bgr-color-gray);
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+    line-height: 1.13;
+  }
+}
+
+.userName {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.13;
+}

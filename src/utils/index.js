@@ -4,3 +4,8 @@ export const shouldShowHeader = pathname => {
 
   return showPaths.includes(pathname) || dynamicPaths.test(pathname);
 };
+
+export const getFirstLetter = name => {
+  if (!name) return '';
+  return name.charAt(0).toUpperCase();
+};
