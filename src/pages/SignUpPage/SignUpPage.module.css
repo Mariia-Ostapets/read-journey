@@ -1,15 +1,39 @@
 .signPageWrapper {
-  display: flex;
+  display: grid;
   gap: 16px;
   justify-content: center;
-  align-items: stretch;
-  height: 100vh;
 }
 
 @media screen and (max-width: 767px) {
   .signPageWrapper {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .signPageWrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    min-height: 100vh;
+    align-items: stretch;
+  }
+
+  .bgrWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 30px;
+  }
+
+  .bgrWrapper picture,
+  .bgrWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -17,27 +41,20 @@
   border-radius: 30px;
   background-color: var(--primary-bgr-color-gray);
   margin: 0 auto;
-  padding-left: 20px;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-bottom: 40px;
+  padding: 20px 20px 40px 20px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .signWrapper {
-    padding-left: 64px;
-    padding-top: 40px;
-    padding-right: 168px;
-    padding-bottom: 214px;
+    padding: 40px 168px 214px 64px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .signWrapper {
-    width: 50%;
-    padding-left: 64px;
-    padding-top: 40px;
-    padding-right: 64px;
+    padding: 40px 64px;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -66,60 +83,4 @@
   font-size: 18px;
   line-height: 1;
   letter-spacing: 0.02em;
-}
-
-.bgrWrapper {
-  background-image: url(../../assets/images/hero-mob.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  overflow: hidden;
-  border-radius: 30px;
-  width: 335px;
-  height: 351px;
-}
-
-@media screen and (min-width: 1280px) {
-  .bgrWrapper {
-    width: 50%;
-    position: relative;
-  }
-
-  .bgrWrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: transparent;
-    height: 100%;
-    display: block;
-  }
-}
-
-@media screen and (min-device-pixel-ratio: 2),
-  screen and (min-resolution: 192dpi),
-  screen and (min-resolution: 2dppx) {
-  .bgrWrapper {
-    background-image: url(../../assets/images/hero-mob@2x.png);
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .bgrWrapper {
-    background-image: url(../../assets/images/hero-desk.png);
-    width: 600px;
-    /* height: 738px; */
-    /* min-height: 738px; */
-    height: 100%;
-  }
-
-  @media screen and (min-device-pixel-ratio: 2),
-    screen and (min-resolution: 192dpi),
-    screen and (min-resolution: 2dppx) {
-    .bgrWrapper {
-      background-image: url(../../assets/images/hero-desk@2x.png);
-    }
-  }
 }

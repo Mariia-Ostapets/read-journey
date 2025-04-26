@@ -27,7 +27,21 @@ export default function SignInPage() {
           <SignInForm />
         </div>
 
-        {showBgrWrapper && <div className={css.bgrWrapper}></div>}
+        {showBgrWrapper && (
+          <div className={css.bgrWrapper}>
+            <picture>
+              <source
+                srcSet="/images/hero-desk.png 1x, /images/hero-desk@2x.png 2x"
+                media="(min-width: 1280px)"
+              />
+              <source
+                srcSet="/images/hero-mob.png 1x, /images/hero-mob@2x.png 2x"
+                media="(max-width: 767px)"
+              />
+              <img src="/images/hero-desk.png" alt="Read journey image" />
+            </picture>
+          </div>
+        )}
       </div>
     </>
   );
