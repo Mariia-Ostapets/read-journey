@@ -1,0 +1,22 @@
+.bannerContainer {
+  padding: 15px 20px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  border-radius: 12px;
+  background-color: var(--secondary-bgr-color-gray);
+}
+
+.bannerText {
+  font-size: 14px;
+  color: var(--primary-color-gray);
+}
+
+.bannerAccentText {
+  color: var(--primary-color-white);
+}
+
+.bannerImg {
+  flex-shrink: 0;
+}
