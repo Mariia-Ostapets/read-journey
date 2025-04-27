@@ -1,0 +1,74 @@
+.dashboardContainer {
+  border-radius: 30px;
+  background-color: var(--primary-bgr-color-gray);
+}
+
+.recommendedPage {
+  padding: 20px 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.libraryPage {
+  padding: 18px 20px 20px;
+}
+
+.readingPage {
+  padding: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .dashboardContainer {
+  }
+
+  .recommendedPage {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .libraryPage {
+    padding: 18px 20px 20px;
+  }
+
+  .readingPage {
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .dashboardContainer {
+  }
+
+  .recommendedPage {
+    padding: 32px;
+    gap: 32px;
+    /* justify-content: space-between; */
+  }
+
+  .libraryPage {
+    padding: 32px;
+  }
+
+  .readingPage {
+    padding: 32px 16px 16px 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dashboardContainer {
+    padding-top: 40px;
+    height: 100%;
+  }
+
+  .recommendedPage {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .libraryPage {
+  }
+
+  .readingPage {
+  }
+}

@@ -1,0 +1,98 @@
+.startWorkoutContainer {
+  padding: 15px 28px 25px 12px;
+  background-color: var(--secondary-bgr-color-gray);
+  border-radius: 12px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .startWorkoutContainer {
+    width: 50%;
+  }
+}
+
+.startWorkoutTitle {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .startWorkoutTitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.startWorkoutList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .startWorkoutList {
+    margin-bottom: 26px;
+  }
+}
+
+.startWorkoutItem {
+  display: flex;
+  gap: 12px;
+}
+
+.startWorkoutItemNumber {
+  border-radius: 50%;
+  background-color: var(--primary-color-white);
+  width: 40px;
+  height: 40px;
+  color: var(--primary-bgr-color-gray);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .startWorkoutItemNumber {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
+.startWorkoutItemText {
+  font-size: 14px;
+}
+
+.startWorkoutItemAccentText {
+  color: var(--primary-color-gray);
+}
+
+.linkText {
+  text-decoration: underline;
+  font-size: 14px;
+  color: var(--primary-color-gray);
+  transition: color var(--primary-transition);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkText:hover,
+.linkText:focus {
+  color: var(--primary-color-white);
+}
+
+.linkText svg {
+  transition: transform var(--primary-transition);
+}
+
+.linkText:hover svg,
+.linkText:focus svg {
+  transform: scale(1.1);
+}

@@ -1,0 +1,19 @@
+.recommendedListContainer {
+  border-radius: 30px;
+  background-color: var(--primary-bgr-color-gray);
+  padding: 40px 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .recommendedListContainer {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .recommendedListContainer {
+    padding-bottom: 28px;
+    height: 100%;
+  }
+}

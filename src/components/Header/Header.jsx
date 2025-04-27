@@ -6,7 +6,6 @@ import { useDeviceType } from '../../hooks/useDeviceType';
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
-import Container from '../ui/Container/Container';
 import { useState } from 'react';
 import MobMenu from '../MobMenu/MobMenu';
 
@@ -30,7 +29,7 @@ export default function Header() {
   };
 
   return (
-    <Container>
+    <div className={css.headerContainer}>
       <header className={css.header}>
         <div className={css.logoWrapper}>
           <Link to="/login" className={css.logo}>
@@ -66,6 +65,6 @@ export default function Header() {
       {deviceType === 'mobile' && isOpen && (
         <MobMenu onClose={closeMenu} isOpen={isOpen} />
       )}
-    </Container>
+    </div>
   );
 }
