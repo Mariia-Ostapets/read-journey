@@ -12,6 +12,9 @@
 
 .libraryPage {
   padding: 18px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .readingPage {
@@ -25,10 +28,14 @@
   .recommendedPage {
     flex-direction: column;
     gap: 25px;
+    align-items: flex-start;
   }
 
   .libraryPage {
     padding: 18px 20px 20px;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
   }
 
   .readingPage {
@@ -43,11 +50,13 @@
   .recommendedPage {
     padding: 32px;
     gap: 32px;
-    /* justify-content: space-between; */
+    align-items: flex-start;
   }
 
   .libraryPage {
     padding: 32px;
+    gap: 32px;
+    align-items: flex-start;
   }
 
   .readingPage {
@@ -64,9 +73,13 @@
   .recommendedPage {
     flex-direction: column;
     gap: 20px;
+    align-items: flex-start;
   }
 
   .libraryPage {
+    flex-direction: column;
+    gap: 78px;
+    align-items: flex-start;
   }
 
   .readingPage {

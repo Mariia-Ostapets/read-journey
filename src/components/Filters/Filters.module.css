@@ -1,0 +1,120 @@
+.filtersForm {
+  padding: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .filtersForm {
+    width: 50%;
+  }
+}
+
+.filtersTitle {
+  font-weight: 500;
+  padding-left: 14px;
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .filtersTitle {
+    line-height: 1.2;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .filtersTitle {
+    font-size: 14px;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.formLabel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 14px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--primary-color-gray);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .formLabel {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+}
+
+.bookInput,
+.authorInput,
+.pagesInput {
+  display: block;
+  outline: transparent;
+  background-color: var(--secondary-bgr-color-gray);
+  border: none;
+  border-radius: 12px;
+  padding-block: 14px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--primary-color-white);
+}
+
+.bookInput {
+  padding-left: 77px;
+}
+
+.authorInput {
+  padding-left: 85px;
+  margin-top: 8px;
+}
+
+.pagesInput {
+  padding-left: 119px;
+  margin-top: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .bookInput,
+  .authorInput {
+    padding-block: 16px;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .bookInput {
+    padding-left: 86px;
+  }
+
+  .authorInput {
+    padding-left: 95px;
+  }
+
+  .pagesInput {
+    padding-left: 135px;
+  }
+}
+
+.bookInput::placeholder,
+.authorInput::placeholder,
+.pagesInput::placeholder {
+  color: var(--primary-color-white);
+}
+
+.bookInput:hover,
+.bookInput:focus,
+.authorInput:hover,
+.authorInput:focus,
+.pagesInput:hover,
+.pagesInput:focus {
+  border: 1px solid rgba(249, 249, 249, 0.1);
+}
