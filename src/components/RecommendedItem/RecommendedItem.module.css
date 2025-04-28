@@ -1,0 +1,29 @@
+.bookImgWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.bookImg {
+  width: 137px;
+  height: 208px;
+}
+
+.bookTitle {
+  font-size: 14px;
+  margin-bottom: 2px;
+  width: 137px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookAuthor {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--primary-color-gray);
+  width: 137px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

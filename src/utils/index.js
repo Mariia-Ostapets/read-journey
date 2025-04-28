@@ -9,3 +9,13 @@ export const getFirstLetter = name => {
   if (!name) return '';
   return name.charAt(0).toUpperCase();
 };
+
+export const getBooksPerPage = ({ isMobile, isTablet }) => {
+  if (isMobile) {
+    return 2;
+  } else if (isTablet) {
+    return 8;
+  } else {
+    return 10;
+  }
+};

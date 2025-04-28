@@ -1,3 +1,19 @@
 import css from './RecommendedItem.module.css';
 
-export default function RecommendedItem() {}
+export default function RecommendedItem({
+  img,
+  bookTitle,
+  author,
+  totalPages,
+  id,
+}) {
+  return (
+    <div>
+      <div className={css.bookImgWrapper}>
+        <img className={css.bookImg} src={img} alt={bookTitle} />
+      </div>
+      <h3 className={css.bookTitle}>{bookTitle}</h3>
+      <p className={css.bookAuthor}>{author}</p>
+    </div>
+  );
+}
