@@ -2,6 +2,7 @@
   border-radius: 30px;
   background-color: var(--primary-bgr-color-gray);
   padding: 40px 20px;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {

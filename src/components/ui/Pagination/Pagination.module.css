@@ -1,0 +1,43 @@
+.paginationBtnWrapper {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  top: 40px;
+  right: 20px;
+}
+
+.paginationBtn {
+  display: block;
+  outline: transparent;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  background-color: transparent;
+  border-radius: 30px;
+  transition: border-color var(--primary-transition);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginationBtnIcon {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .paginationBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .paginationBtnIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.paginationBtn:disabled svg {
+  stroke: rgba(249, 249, 249, 0.2);
+}

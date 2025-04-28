@@ -11,6 +11,7 @@ import Loader from '../ui/Loader/Loader';
 import { useDeviceType } from '../../hooks/useDeviceType';
 import { getBooksPerPage } from '../../utils';
 import RecommendedItem from '../RecommendedItem/RecommendedItem';
+import Pagination from '../ui/Pagination/Pagination';
 
 export default function RecommendedList() {
   const books = useSelector(selectBooks);
@@ -34,25 +35,30 @@ export default function RecommendedList() {
   return (
     <section className={css.recommendedListContainer}>
       <h2 className={css.recommendedListTitle}>Recommended</h2>
-      {isNoResults && (
+
+      {isNoResults ? (
         <p className={css.noResultsText}>
           No results for your search query. Please try again
         </p>
+      ) : (
+        <>
+          {loading && <Loader />}
+          <ul className={css.booksList}>
+            {books.map(book => (
+              <li className={css.booksItem} key={book._id}>
+                <RecommendedItem
+                  bookTitle={book.title}
+                  img={book.imageUrl}
+                  author={book.author}
+                  totalPages={book.totalPages}
+                  id={book._id}
+                />
+              </li>
+            ))}
+          </ul>
+          <Pagination />
+        </>
       )}
-      {loading && <Loader />}
-      <ul className={css.booksList}>
-        {books.map(book => (
-          <li className={css.booksItem} key={book._id}>
-            <RecommendedItem
-              bookTitle={book.title}
-              img={book.imageUrl}
-              author={book.author}
-              totalPages={book.totalPages}
-              id={book._id}
-            />
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

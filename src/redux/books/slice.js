@@ -49,4 +49,5 @@ const booksSlice = createSlice({
   },
 });
 
+export const { goToNextPage, goToPrevPage } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;
