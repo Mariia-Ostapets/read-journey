@@ -2,8 +2,13 @@ import { useId } from 'react';
 import { useShouldRender } from '../../hooks/useShouldRender';
 import css from './Filters.module.css';
 import Button from '../ui/Button/Button';
+import { useDispatch } from 'react-redux';
+import { getRecommendedBooks } from '../../redux/books/operations';
+import { useForm } from 'react-hook-form';
 
 export default function Filters() {
+  const dispatch = useDispatch();
+
   const isRecommendedPage = useShouldRender(['/recommended']);
   const isMyLibraryPage = useShouldRender(['/library']);
   // const isMyReadingPage = useShouldRender([/^\/reading\/[^/]+$/]);
@@ -12,10 +17,26 @@ export default function Filters() {
   const authorId = useId();
   const pagesId = useId();
 
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      title: '',
+      author: '',
+      pages: '',
+    },
+  });
+
+  const onSubmit = ({ title, author, pages }) => {
+    if (!title && !author && !pages) {
+      dispatch(getRecommendedBooks({}));
+    } else {
+      dispatch(getRecommendedBooks({ title, author, pages }));
+    }
+  };
+
   return (
     <>
       {isRecommendedPage && (
-        <form className={css.filtersForm}>
+        <form className={css.filtersForm} onSubmit={handleSubmit(onSubmit)}>
           <h1 className={css.filtersTitle}>Filters:</h1>
 
           <div className={css.inputWrapper}>
@@ -23,6 +44,7 @@ export default function Filters() {
               Book title:
             </label>
             <input
+              {...register('title')}
               className={css.bookInput}
               id={bookId}
               type="text"
@@ -35,6 +57,7 @@ export default function Filters() {
               The author:
             </label>
             <input
+              {...register('author')}
               className={css.authorInput}
               id={authorId}
               type="text"
@@ -49,7 +72,7 @@ export default function Filters() {
       )}
 
       {isMyLibraryPage && (
-        <form className={css.filtersForm}>
+        <form className={css.filtersForm} onSubmit={handleSubmit(onSubmit)}>
           <h1 className={css.filtersTitle}>Create your library:</h1>
 
           <div className={css.inputWrapper}>
@@ -57,6 +80,7 @@ export default function Filters() {
               Book title:
             </label>
             <input
+              {...register('title')}
               className={css.bookInput}
               id={bookId}
               type="text"
@@ -69,6 +93,7 @@ export default function Filters() {
               The author:
             </label>
             <input
+              {...register('author')}
               className={css.authorInput}
               id={authorId}
               type="text"
@@ -81,10 +106,11 @@ export default function Filters() {
               Number of pages:
             </label>
             <input
+              {...register('pages')}
               className={css.pagesInput}
               id={pagesId}
               type="text"
-              placeholder="Enter text"
+              placeholder="0"
             />
           </div>
 

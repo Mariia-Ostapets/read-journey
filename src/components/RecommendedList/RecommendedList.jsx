@@ -12,6 +12,7 @@ import { getBooksPerPage } from '../../utils';
 import RecommendedItem from '../RecommendedItem/RecommendedItem';
 import Pagination from '../ui/Pagination/Pagination';
 import { useMediaQuery } from 'react-responsive';
+import NoResults from '../ui/NoResults/NoResults';
 
 export default function RecommendedList() {
   const books = useSelector(selectBooks);
@@ -36,9 +37,7 @@ export default function RecommendedList() {
       <h2 className={css.recommendedListTitle}>Recommended</h2>
 
       {isNoResults ? (
-        <p className={css.noResultsText}>
-          No results for your search query. Please try again
-        </p>
+        <NoResults />
       ) : (
         <>
           {loading && <Loader />}
