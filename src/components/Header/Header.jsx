@@ -2,17 +2,15 @@ import { Link } from 'react-router-dom';
 import UserNav from '../UserNav/UserNav';
 import UserBar from '../UserBar/UserBar';
 import css from './Header.module.css';
-import { useDeviceType } from '../../hooks/useDeviceType';
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import { useState } from 'react';
 import MobMenu from '../MobMenu/MobMenu';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const deviceType = useDeviceType();
 
   const dispatch = useDispatch();
 
@@ -28,6 +26,9 @@ export default function Header() {
     setIsOpen(false);
   };
 
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+
   return (
     <div className={css.headerContainer}>
       <header className={css.header}>
@@ -37,24 +38,24 @@ export default function Header() {
               <use href="/sprite.svg#icon-logo"></use>
             </svg>
           </Link>
-          {deviceType === 'desktop' && (
+          {isDesktop && (
             <Link to="/login" className={css.logoText}>
               read journey
             </Link>
           )}
         </div>
         <div className={css.userNavUserBarBtnWrapper}>
-          {deviceType !== 'mobile' && <UserNav />}
+          {!isMobile && <UserNav />}
           <div className={css.userBarAndBtnWrapper}>
             <UserBar />
-            {deviceType === 'mobile' && (
+            {isMobile && (
               <Button type="submit" variant="burger" onClick={toggleMenu}>
                 <svg width={28} height={28}>
                   <use href="/sprite.svg#icon-burger"></use>
                 </svg>
               </Button>
             )}
-            {deviceType !== 'mobile' && (
+            {!isMobile && (
               <Button type="submit" variant="logOut" onClick={handleLogOut}>
                 Log out
               </Button>
@@ -62,9 +63,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      {deviceType === 'mobile' && isOpen && (
-        <MobMenu onClose={closeMenu} isOpen={isOpen} />
-      )}
+      {isMobile && isOpen && <MobMenu onClose={closeMenu} isOpen={isOpen} />}
     </div>
   );
 }

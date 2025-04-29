@@ -4,12 +4,12 @@ import StartWorkout from '../StartWorkout/StartWorkout';
 import RecommendedBooks from '../RecommendedBooks/RecommendedBooks';
 import Banner from '../Banner/Banner';
 import Progress from '../Progress/Progress';
-import { useDeviceType } from '../../hooks/useDeviceType';
 import { useShouldRender } from '../../hooks/useShouldRender';
 import clsx from 'clsx';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Dashboard() {
-  const deviceType = useDeviceType();
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   const isRecommendedPage = useShouldRender(['/recommended']);
   const isMyLibraryPage = useShouldRender(['/library']);
@@ -28,7 +28,7 @@ export default function Dashboard() {
       {isRecommendedPage && (
         <>
           <StartWorkout />
-          {deviceType === 'desktop' && <Banner />}
+          {isDesktop && <Banner />}
         </>
       )}
 

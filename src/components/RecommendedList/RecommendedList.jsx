@@ -8,19 +8,18 @@ import {
 import { useEffect } from 'react';
 import { getRecommendedBooks } from '../../redux/books/operations';
 import Loader from '../ui/Loader/Loader';
-import { useDeviceType } from '../../hooks/useDeviceType';
 import { getBooksPerPage } from '../../utils';
 import RecommendedItem from '../RecommendedItem/RecommendedItem';
 import Pagination from '../ui/Pagination/Pagination';
+import { useMediaQuery } from 'react-responsive';
 
 export default function RecommendedList() {
   const books = useSelector(selectBooks);
   const loading = useSelector(selectIsLoading);
   const currentPage = useSelector(selectCurrentPage);
 
-  const deviceType = useDeviceType();
-  const isMobile = deviceType === 'mobile';
-  const isTablet = deviceType === 'tablet';
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
 
   const limit = getBooksPerPage({ isMobile, isTablet });
 
@@ -28,7 +27,7 @@ export default function RecommendedList() {
 
   useEffect(() => {
     dispatch(getRecommendedBooks({ limit, page: currentPage }));
-  }, [dispatch, limit, currentPage]);
+  }, [dispatch, currentPage, limit]);
 
   const isNoResults = books.length === 0;
 

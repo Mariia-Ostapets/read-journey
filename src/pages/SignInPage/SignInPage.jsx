@@ -1,12 +1,13 @@
 import css from './SignInPage.module.css';
 import { Link } from 'react-router-dom';
-import { useDeviceType } from '../../hooks/useDeviceType.js';
 import SignInForm from '../../components/SignInForm/SignInForm.jsx';
+import { useMediaQuery } from 'react-responsive';
 
 export default function SignInPage() {
-  const deviceType = useDeviceType();
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
 
-  const showBgrWrapper = deviceType === 'mobile' || deviceType === 'desktop';
+  const showBgrWrapper = isMobile || isDesktop;
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function SignInPage() {
                 <use href="/sprite.svg#icon-logo"></use>
               </svg>
             </Link>
-            {deviceType === 'desktop' && (
+            {isDesktop && (
               <Link to="/login" className={css.logoText}>
                 read journey
               </Link>

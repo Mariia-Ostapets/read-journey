@@ -132,32 +132,6 @@
   }
 }
 
-.paginationBtn {
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.paginationBtnIcon {
-  width: 16px;
-  height: 16px;
-}
-
-@media screen and (min-width: 768px) {
-  .paginationBtn {
-    width: 40px;
-    height: 40px;
-  }
-
-  .paginationBtnIcon {
-    width: 20px;
-    height: 20px;
-  }
-}
-
 .closeModalBtn,
 .closeMobMenuBtn,
 .burgerBtn,

@@ -12,13 +12,14 @@
   border: 1px solid rgba(249, 249, 249, 0.2);
   background-color: transparent;
   border-radius: 30px;
-  transition: border-color var(--primary-transition);
   border-radius: 50%;
   width: 32px;
   height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
+  stroke: var(--primary-color-white);
+  transition: scale var(--primary-transition);
 }
 
 .paginationBtnIcon {
@@ -27,6 +28,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .paginationBtnWrapper {
+    right: 40px;
+  }
+
   .paginationBtn {
     width: 40px;
     height: 40px;
@@ -36,6 +41,14 @@
     width: 20px;
     height: 20px;
   }
+}
+
+.paginationBtn:hover:not(:disabled) {
+  scale: 1.1;
+}
+
+.paginationBtn:disabled {
+  cursor: not-allowed;
 }
 
 .paginationBtn:disabled svg {

@@ -31,8 +31,8 @@ export default function Pagination() {
         disabled={currentPage === 1 || isLoading}
         onClick={handlePrevPage}
       >
-        <svg className={css.paginationBtnIcon} width={32} height={32}>
-          <use href="/sprite.svg#icon-chevron-left"></use>
+        <svg className={css.paginationBtnIcon}>
+          <use href="/sprite.svg?v=1#icon-chevron-left"></use>
         </svg>
       </Button>
       <Button
@@ -42,8 +42,8 @@ export default function Pagination() {
         disabled={currentPage === totalPages || isLoading}
         onClick={handleNextPage}
       >
-        <svg className={css.paginationBtnIcon} width={32} height={32}>
-          <use href="/sprite.svg#icon-chevron-right"></use>
+        <svg className={css.paginationBtnIcon}>
+          <use href="/sprite.svg?v=1#icon-chevron-right"></use>
         </svg>
       </Button>
     </div>
