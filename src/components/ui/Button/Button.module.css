@@ -66,6 +66,8 @@
 
 .addBookBtn {
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -149,4 +151,10 @@
   position: absolute;
   top: 34px;
   right: 40px;
+}
+
+.closeModalBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }

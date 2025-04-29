@@ -53,3 +53,68 @@
     column-gap: 20px;
   }
 }
+
+.modalBookImgWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  width: 140px;
+  height: 213px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modalBookImg {
+  width: 140px;
+  height: 213px;
+}
+
+.modalBookTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modalBookAuthor {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.17;
+  margin-bottom: 4px;
+  color: var(--primary-color-gray);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modalBookPages {
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .modalBookImgWrapper,
+  .modalBookImg {
+    width: 153px;
+    height: 233px;
+  }
+
+  .modalBookTitle {
+    font-size: 20px;
+  }
+
+  .modalBookAuthor {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .modalBookPages {
+    margin-bottom: 32px;
+  }
+}
