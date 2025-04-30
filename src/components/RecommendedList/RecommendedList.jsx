@@ -13,16 +13,19 @@ import { getBooksPerPage } from '../../utils';
 import RecommendedItem from '../RecommendedItem/RecommendedItem';
 import Pagination from '../ui/Pagination/Pagination';
 import { useMediaQuery } from 'react-responsive';
-import NoResults from '../ui/NoResults/NoResults';
 import ModalForm from '../ui/ModalForm/ModalForm';
 import Button from '../ui/Button/Button';
 import toast from 'react-hot-toast';
+import NoResults from '../ui/NoResults/NoResults';
+import Info from '../ui/Info/Info';
 
 export default function RecommendedList() {
   const [selectedBook, setSelectedBook] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const openModal = book => setSelectedBook(book);
   const closeModal = () => setSelectedBook(null);
+  const closeSuccessModal = () => setShowSuccessModal(false);
 
   const books = useSelector(selectBooks);
   const loading = useSelector(selectIsLoading);
@@ -50,10 +53,12 @@ export default function RecommendedList() {
       dispatch(addBookById(selectedBook._id))
         .unwrap()
         .then(() => {
-          toast.success('Book added to your library');
+          closeModal();
+          setShowSuccessModal(true);
         })
         .catch(() => {
           toast.error('Something went wrong. Please try again.');
+          closeModal();
         });
     } else {
       toast.success('This book is already in your library.', {
@@ -62,7 +67,6 @@ export default function RecommendedList() {
         },
       });
     }
-
     closeModal();
   };
 
@@ -112,10 +116,24 @@ export default function RecommendedList() {
                 <p className={css.modalBookPages}>
                   {selectedBook.totalPages} pages
                 </p>
-                <Button type="button" variant="addBook" onClick={handleAddBook}>
+                <Button
+                  type="button"
+                  variant="addToLibrary"
+                  onClick={handleAddBook}
+                >
                   Add to library
                 </Button>
               </div>
+            </ModalForm>
+          )}
+
+          {showSuccessModal && (
+            <ModalForm
+              modalIsOpen={showSuccessModal}
+              closeModal={closeSuccessModal}
+              variant="notification"
+            >
+              <Info />
             </ModalForm>
           )}
 

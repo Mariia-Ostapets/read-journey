@@ -1,10 +1,14 @@
+import { useShouldRender } from '../../../hooks/useShouldRender';
 import css from './NoResults.module.css';
 
 export default function NoResults() {
+  const isRecommendedPage = useShouldRender(['/recommended']);
+  const isMyLibraryPage = useShouldRender(['/library']);
+
   return (
     <div className={css.noResultsContainer}>
       <div className={css.noResultsImgWrapper}>
-        <picture className={css.noResultsImg}>
+        <picture>
           <source
             srcSet="/images/books.png 1x, /images/books@2x.png 2x"
             media="(min-width: 768px)"
@@ -25,11 +29,20 @@ export default function NoResults() {
           />
         </picture>
       </div>
-      <p className={css.noResultsText}>
-        No results <span className={css.noResultsTextAccent}>for your</span>{' '}
-        search query.{' '}
-        <span className={css.noResultsTextAccent}>Please try again.</span>
-      </p>
+      {isRecommendedPage && (
+        <p className={css.noResultsText}>
+          No results <span className={css.infoTextAccent}>for your</span> search
+          query. <span className={css.infoTextAccent}>Please try again.</span>
+        </p>
+      )}
+
+      {isMyLibraryPage && (
+        <p className={css.noResultsText}>
+          To start training, add{' '}
+          <span className={css.infoTextAccent}>some of your books</span> or from
+          the recommended ones
+        </p>
+      )}
     </div>
   );
 }

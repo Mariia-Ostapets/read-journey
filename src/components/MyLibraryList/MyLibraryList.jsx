@@ -3,12 +3,12 @@ import css from './MyLibraryList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading, selectOwnBooks } from '../../redux/books/selectors';
 import { getOwnBooks } from '../../redux/books/operations';
-import NoResults from '../ui/NoResults/NoResults';
 import Loader from '../ui/Loader/Loader';
 import MyLibraryItem from '../MyLibraryItem/MyLibraryItem';
 import ModalForm from '../ui/ModalForm/ModalForm';
 import Button from '../ui/Button/Button';
 import MyLibrarySelect from '../MyLibrarySelect/MyLibrarySelect';
+import NoResults from '../ui/NoResults/NoResults';
 
 export default function MyLibraryList() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -29,8 +29,10 @@ export default function MyLibraryList() {
 
   return (
     <section className={css.myLibraryContainer}>
-      <h2>My Library</h2>
-      <MyLibrarySelect />
+      <div className={css.titleAndSelectContainer}>
+        <h2 className={css.myLibraryTitle}>My Library</h2>
+        <MyLibrarySelect />
+      </div>
 
       {isNoResults ? (
         <NoResults />
@@ -74,8 +76,8 @@ export default function MyLibraryList() {
                 <p className={css.modalBookPages}>
                   {selectedBook.totalPages} pages
                 </p>
-                <Button type="button" variant="addBook">
-                  Add to library
+                <Button type="button" variant="addToLibrary">
+                  Start reading
                 </Button>
               </div>
             </ModalForm>

@@ -64,7 +64,7 @@ export const getOwnBooks = createAsyncThunk(
 
 export const deleteOwnBook = createAsyncThunk(
   'books/deleteOwnBook',
-  async ({ id }, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
       const { data } = await api.delete(`/books/remove/${id}`);
       return data;

@@ -1,3 +1,5 @@
+@import url(../RecommendedList/RecommendedList.module.css);
+
 .myLibraryContainer {
   border-radius: 30px;
   background-color: var(--primary-bgr-color-gray);
@@ -17,4 +19,28 @@
     padding-bottom: 40px;
     height: 100%;
   }
+}
+
+.titleAndSelectContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.myLibraryTitle {
+  font-size: 20px;
+  line-height: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .myLibraryTitle {
+    font-size: 28px;
+    line-height: 1.14;
+    letter-spacing: 0.02em;
+  }
+}
+
+.booksList {
+  justify-content: flex-start;
 }

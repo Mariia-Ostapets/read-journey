@@ -3,16 +3,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 10px;
   margin: 0 auto;
+  gap: 10px;
   padding-top: 83px;
   padding-bottom: 100px;
 }
 
 @media screen and (min-width: 768px) {
-  .noResultsContainer {
+  .recommendedPageInfoContainer {
     padding-top: 100px;
     padding-bottom: 160px;
+    gap: 20px;
   }
 }
 
@@ -31,10 +32,6 @@
     width: 130px;
     height: 130px;
   }
-
-  .noResultsText {
-    max-width: 274px;
-  }
 }
 
 .noResultsText {
@@ -43,6 +40,12 @@
   font-size: 14px;
 }
 
-.noResultsTextAccent {
+@media screen and (min-width: 768px) {
+  .noResultsText {
+    max-width: 274px;
+  }
+}
+
+.infoTextAccent {
   color: var(--primary-color-gray);
 }

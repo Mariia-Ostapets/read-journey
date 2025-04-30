@@ -1,0 +1,13 @@
+@import url(../RecommendedItem/RecommendedItem.module.css);
+
+.discriptionAndBtnWrapper {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookTitle,
+.bookAuthor {
+  width: 95px;
+}

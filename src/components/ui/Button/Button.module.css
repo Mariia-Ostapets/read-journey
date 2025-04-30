@@ -66,8 +66,6 @@
 
 .addBookBtn {
   margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -107,6 +105,8 @@
 .addToLibraryBtn {
   padding: 12px 24px;
   height: 42px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (min-width: 768px) {

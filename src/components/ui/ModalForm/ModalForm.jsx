@@ -35,7 +35,7 @@ export default function ModalForm({
     if (variant === 'book') {
       variantStyles = {
         width: isMobile ? '335px' : '500px',
-        maxHeight: isMobile ? '439px' : '483px',
+        // maxHeight: isMobile ? '439px' : '483px',
         padding: isMobile ? '40px' : '50px',
       };
     } else if (variant === 'notification') {
@@ -59,7 +59,7 @@ export default function ModalForm({
       bodyOpenClassName={css.modalOpen}
       contentLabel="Modal Window"
     >
-      <Button type={'button'} variant="closeModal" onClick={closeModal}>
+      <Button type="button" variant="closeModal" onClick={closeModal}>
         <svg width={22} height={22}>
           <use href="/sprite.svg#icon-close"></use>
         </svg>
