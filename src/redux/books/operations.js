@@ -21,3 +21,67 @@ export const getRecommendedBooks = createAsyncThunk(
     }
   }
 );
+
+export const addBookById = createAsyncThunk(
+  'books/addBookById',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await api.post(`/books/add/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const addBook = createAsyncThunk(
+  'books/addBook',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await api.post(`/books/add`, credentials);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getOwnBooks = createAsyncThunk(
+  'books/getOwnBooks',
+  async (credentials, thunkAPI) => {
+    try {
+      const url =
+        credentials && credentials !== 'all'
+          ? `/books/own?status=${credentials}`
+          : '/books/own';
+      const { data } = await api.get(url);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const deleteOwnBook = createAsyncThunk(
+  'books/deleteOwnBook',
+  async ({ id }, thunkAPI) => {
+    try {
+      const { data } = await api.delete(`/books/remove/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getBookById = createAsyncThunk(
+  'books/getBookById',
+  async ({ id }, thunkAPI) => {
+    try {
+      const { data } = await api.get(`/books/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);

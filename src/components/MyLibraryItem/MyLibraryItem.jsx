@@ -1,8 +1,8 @@
-import css from './RecommendedItem.module.css';
+import css from './MyLibraryItem.module.css';
 
-export default function RecommendedItem({ img, bookTitle, author }) {
+export default function MyLibraryItem({ img, bookTitle, author }) {
   return (
-    <div>
+    <div className={css.myLibraryItemContainer}>
       <div className={css.bookImgWrapper}>
         <img className={css.bookImg} src={img} alt={bookTitle} />
       </div>

@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getRecommendedBooks } from './operations';
+import {
+  addBook,
+  deleteOwnBook,
+  getBookById,
+  getOwnBooks,
+  getRecommendedBooks,
+} from './operations';
 
 const handlePending = state => {
   state.loading = true;
@@ -46,6 +52,36 @@ const booksSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getRecommendedBooks.rejected, handleRejected);
+    builder.addCase(addBook.pending, handlePending);
+    builder.addCase(addBook.fulfilled, (state, action) => {
+      state.ownBooks.push(action.payload);
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(addBook.rejected, handleRejected);
+    builder.addCase(getOwnBooks.pending, handlePending);
+    builder.addCase(getOwnBooks.fulfilled, (state, action) => {
+      state.ownBooks = action.payload;
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(getOwnBooks.rejected, handleRejected);
+    builder.addCase(deleteOwnBook.pending, handlePending);
+    builder.addCase(deleteOwnBook.fulfilled, (state, action) => {
+      state.ownBooks = state.ownBooks.filter(
+        book => action.payload.id !== book._id
+      );
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(deleteOwnBook.rejected, handleRejected);
+    builder.addCase(getBookById.pending, handlePending);
+    builder.addCase(getBookById.fulfilled, (state, action) => {
+      state.readingBook = action.payload;
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(getBookById.rejected, handleRejected);
   },
 });
 
