@@ -18,6 +18,10 @@ import Button from '../ui/Button/Button';
 import toast from 'react-hot-toast';
 import NoResults from '../ui/NoResults/NoResults';
 import Info from '../ui/Info/Info';
+import {
+  selectAuthorFilter,
+  selectTitleFilter,
+} from '../../redux/filters/selectors';
 
 export default function RecommendedList() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -31,17 +35,46 @@ export default function RecommendedList() {
   const loading = useSelector(selectIsLoading);
   const currentPage = useSelector(selectCurrentPage);
   const ownBooks = useSelector(selectOwnBooks);
+  const titleFilter = useSelector(selectTitleFilter);
+  const authorFilter = useSelector(selectAuthorFilter);
 
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ maxWidth: 1279 });
+  // const isMobile = useMediaQuery({ maxWidth: 767 });
+  // const isTablet = useMediaQuery({ maxWidth: 1279 });
 
-  const limit = getBooksPerPage({ isMobile, isTablet });
+  // const limit = getBooksPerPage({ isMobile, isTablet });
+  const [limit, setLimit] = useState(() => {
+    const width = window.innerWidth;
+    if (width >= 1280) return 10;
+    if (width >= 768) return 8;
+    return 2;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+
+      if (width >= 1280 && limit !== 10) setLimit(10);
+      else if (width >= 768 && width < 1280 && limit !== 8) setLimit(8);
+      else if (width < 768 && limit !== 2) setLimit(2);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [limit]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRecommendedBooks({ limit, page: currentPage }));
-  }, [dispatch, limit, currentPage]);
+    dispatch(
+      getRecommendedBooks({
+        limit,
+        page: currentPage,
+        title: titleFilter,
+        author: authorFilter,
+      })
+    );
+  }, [dispatch, limit, currentPage, titleFilter, authorFilter]);
 
   const isNoResults = books.length === 0;
 

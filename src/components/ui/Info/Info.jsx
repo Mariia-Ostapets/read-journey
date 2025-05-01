@@ -3,7 +3,6 @@ import css from './Info.module.css';
 
 export default function Info() {
   const isRecommendedPage = useShouldRender(['/recommended']);
-  const isMyLibraryPage = useShouldRender(['/library']);
   const isMyReadingPage = useShouldRender([/^\/reading\/[^/]+$/]);
 
   return (

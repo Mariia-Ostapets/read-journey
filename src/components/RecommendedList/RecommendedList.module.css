@@ -36,7 +36,7 @@
 .booksList {
   display: flex;
   gap: 21px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
 }

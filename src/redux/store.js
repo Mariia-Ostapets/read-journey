@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
 import { booksReducer } from './books/slice';
+import { filtersReducer } from './filters/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,10 +20,17 @@ const authPersistConfig = {
   whitelist: ['token', 'refreshToken'],
 };
 
+const filtersPersistConfig = {
+  key: 'filters',
+  storage,
+  whitelist: ['title', 'author'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     books: booksReducer,
+    filters: persistReducer(filtersPersistConfig, filtersReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

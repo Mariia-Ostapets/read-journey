@@ -7,9 +7,14 @@ import Progress from '../Progress/Progress';
 import { useShouldRender } from '../../hooks/useShouldRender';
 import clsx from 'clsx';
 import { useMediaQuery } from 'react-responsive';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function Dashboard() {
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  // const isDesktop = useMediaQuery({ minWidth: 1280 });
+
+  const deviceType = useDeviceType();
+
+  const isDesktop = deviceType === 'desktop';
 
   const isRecommendedPage = useShouldRender(['/recommended']);
   const isMyLibraryPage = useShouldRender(['/library']);

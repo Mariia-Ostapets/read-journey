@@ -8,6 +8,7 @@ import { logOut } from '../../redux/auth/operations';
 import { useState } from 'react';
 import MobMenu from '../MobMenu/MobMenu';
 import { useMediaQuery } from 'react-responsive';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +27,13 @@ export default function Header() {
     setIsOpen(false);
   };
 
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  // const isMobile = useMediaQuery({ maxWidth: 767 });
+  // const isDesktop = useMediaQuery({ minWidth: 1280 });
+
+  const deviceType = useDeviceType();
+
+  const isMobile = deviceType === 'mobile';
+  const isDesktop = deviceType === 'desktop';
 
   return (
     <div className={css.headerContainer}>

@@ -1,10 +1,15 @@
-import { useId } from 'react';
+import { useEffect, useId } from 'react';
 import { useShouldRender } from '../../hooks/useShouldRender';
 import css from './Filters.module.css';
 import Button from '../ui/Button/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getRecommendedBooks } from '../../redux/books/operations';
 import { useForm } from 'react-hook-form';
+import {
+  selectAuthorFilter,
+  selectTitleFilter,
+} from '../../redux/filters/selectors';
+import { setFilters } from '../../redux/filters/slice';
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -17,20 +22,36 @@ export default function Filters() {
   const authorId = useId();
   const pagesId = useId();
 
-  const { register, handleSubmit } = useForm({
+  const titleFilter = useSelector(selectTitleFilter);
+  const authorFilter = useSelector(selectAuthorFilter);
+
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      title: '',
-      author: '',
+      title: titleFilter,
+      author: authorFilter,
       pages: '',
     },
   });
 
+  useEffect(() => {
+    reset({
+      title: titleFilter,
+      author: authorFilter,
+      pages: '',
+    });
+  }, [titleFilter, authorFilter, reset]);
+
+  // const onSubmit = ({ title, author, pages }) => {
+  //   if (!title && !author && !pages) {
+  //     dispatch(getRecommendedBooks({}));
+  //   } else {
+  //     dispatch(getRecommendedBooks({ title, author, pages }));
+  //   }
+  // };
+
   const onSubmit = ({ title, author, pages }) => {
-    if (!title && !author && !pages) {
-      dispatch(getRecommendedBooks({}));
-    } else {
-      dispatch(getRecommendedBooks({ title, author, pages }));
-    }
+    dispatch(setFilters({ title, author }));
+    dispatch(getRecommendedBooks({ title, author, pages }));
   };
 
   return (

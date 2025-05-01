@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required('Password is required')
-    .min(7, 'Enter a valid Password*'),
+    .min(7, 'Password must be at least 7 characters long'),
 });
 
 export default function SignUpForm() {
@@ -34,6 +34,7 @@ export default function SignUpForm() {
     register: formRegister,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -55,7 +56,8 @@ export default function SignUpForm() {
       await dispatch(register(data)).unwrap();
       toast.success('User was successfully registered!');
     } catch (error) {
-      console.error(error);
+      reset();
+      // console.error(error);
     }
   };
 
@@ -120,7 +122,7 @@ export default function SignUpForm() {
             [css.inputInvalid]: errors.email,
           })}
           id={emailId}
-          type="text"
+          type="email"
           placeholder="Your@email.com"
           {...formRegister('email')}
         />
