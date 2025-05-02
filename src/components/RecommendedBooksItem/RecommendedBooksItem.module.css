@@ -1,0 +1,17 @@
+@import url(../RecommendedItem/RecommendedItem.module.css);
+
+.bookImg {
+  width: 71px;
+  height: 107px;
+}
+
+.bookTitle {
+  font-size: 10px;
+  line-height: 1.2;
+  margin-bottom: 2px;
+  width: 71px;
+}
+
+.bookAuthor {
+  width: 71px;
+}
