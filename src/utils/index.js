@@ -19,3 +19,8 @@ export const getBooksPerPage = ({ isMobile, isTablet }) => {
     return 10;
   }
 };
+
+export const getRandomBooks = (books, count) => {
+  const shuffled = [...books].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};

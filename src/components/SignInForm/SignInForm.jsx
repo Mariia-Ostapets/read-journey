@@ -27,7 +27,7 @@ const schema = yup.object().shape({
     .min(7, 'Password must be at least 7 characters long'),
 });
 
-export default function SignUpForm() {
+export default function SignInForm() {
   const [isEyeOff, setIsEyeOff] = useState(true);
 
   const {

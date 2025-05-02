@@ -7,17 +7,19 @@ import NoResults from '../ui/NoResults/NoResults';
 import Loader from '../ui/Loader/Loader';
 import RecommendedBooksItem from '../RecommendedBooksItem/RecommendedBooksItem';
 import { Link } from 'react-router-dom';
+import { getRandomBooks } from '../../utils';
 
 export default function RecommendedBooks() {
   const books = useSelector(selectBooks);
   const loading = useSelector(selectIsLoading);
-  const limit = 3;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRecommendedBooks({ limit }));
+    dispatch(getRecommendedBooks());
   }, [dispatch]);
+
+  const randomBooks = getRandomBooks(books, 3);
 
   const isNoResults = books.length === 0;
 
@@ -30,7 +32,7 @@ export default function RecommendedBooks() {
         <>
           {loading && <Loader />}
           <ul className={css.booksList}>
-            {books.map(book => (
+            {randomBooks.map(book => (
               <li className={css.booksItem} key={book._id}>
                 <RecommendedBooksItem
                   bookTitle={book.title}
