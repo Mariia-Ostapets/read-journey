@@ -18,7 +18,8 @@ const schema = yup.object().shape({
     .test(
       'is-valid-email',
       'Email must match pattern: Your@email.com',
-      value => !value || /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value)
+      value =>
+        !value || /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value.toLowerCase())
     ),
   password: yup
     .string()
@@ -50,12 +51,15 @@ export default function SignUpForm() {
 
   const onSubmit = async data => {
     try {
-      await dispatch(logIn(data)).unwrap();
+      const normalizedData = {
+        ...data,
+        email: data.email.toLowerCase(),
+      };
+      await dispatch(logIn(normalizedData)).unwrap();
       reset();
       toast.success('User was successfully logged in!');
     } catch (error) {
       reset();
-      // console.error(error);
     }
   };
 
