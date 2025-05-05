@@ -23,7 +23,11 @@ export default function MyLibraryItem({ img, bookTitle, author, id }) {
   return (
     <div className={css.myLibraryItemContainer}>
       <div className={css.bookImgWrapper}>
-        <img className={css.bookImg} src={img} alt={bookTitle} />
+        <img
+          className={css.bookImg}
+          src={img || '/images/default-book-small.png'}
+          alt={bookTitle}
+        />
       </div>
       <div className={css.discriptionAndBtnWrapper}>
         <div className={css.titleAndAuthorWrapper}>

@@ -67,7 +67,9 @@ export default function MyLibraryList() {
                 <div className={css.modalBookImgWrapper}>
                   <img
                     className={css.modalBookImg}
-                    src={selectedBook.imageUrl}
+                    src={
+                      selectedBook.imageUrl || '/images/default-book-small.png'
+                    }
                     alt={selectedBook.bookTitle}
                   />
                 </div>

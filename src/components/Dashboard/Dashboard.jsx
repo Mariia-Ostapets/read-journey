@@ -8,6 +8,7 @@ import { useShouldRender } from '../../hooks/useShouldRender';
 import clsx from 'clsx';
 import { useMediaQuery } from 'react-responsive';
 import { useDeviceType } from '../../hooks/useDeviceType';
+import AddBook from '../AddBook/AddBook';
 
 export default function Dashboard() {
   // const isDesktop = useMediaQuery({ minWidth: 1280 });
@@ -29,15 +30,20 @@ export default function Dashboard() {
         isMyReadingPage && css.readingPage
       )}
     >
-      <Filters />
       {isRecommendedPage && (
         <>
+          <Filters />
           <StartWorkout />
           {isDesktop && <Banner />}
         </>
       )}
 
-      {isMyLibraryPage && <RecommendedBooks />}
+      {isMyLibraryPage && (
+        <>
+          <AddBook />
+          <RecommendedBooks />
+        </>
+      )}
 
       {isMyReadingPage && <Progress />}
     </section>

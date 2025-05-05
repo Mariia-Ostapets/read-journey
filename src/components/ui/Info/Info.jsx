@@ -3,11 +3,12 @@ import css from './Info.module.css';
 
 export default function Info() {
   const isRecommendedPage = useShouldRender(['/recommended']);
+  const isMyLibraryPage = useShouldRender(['/library']);
   const isMyReadingPage = useShouldRender([/^\/reading\/[^/]+$/]);
 
   return (
     <div className={css.infoContainer}>
-      {isRecommendedPage && (
+      {(isRecommendedPage || isMyLibraryPage) && (
         <picture>
           <source
             srcSet="/images/hand.png 1x, /images/hand@2x.png 2x"
@@ -53,7 +54,7 @@ export default function Info() {
         </picture>
       )}
 
-      {isRecommendedPage && (
+      {(isRecommendedPage || isMyLibraryPage) && (
         <div>
           <h3 className={css.infoTitle}>Good job!</h3>
           <p className={css.infoText}>
