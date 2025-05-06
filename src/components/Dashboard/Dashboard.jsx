@@ -6,13 +6,11 @@ import Banner from '../Banner/Banner';
 import Progress from '../Progress/Progress';
 import { useShouldRender } from '../../hooks/useShouldRender';
 import clsx from 'clsx';
-import { useMediaQuery } from 'react-responsive';
 import { useDeviceType } from '../../hooks/useDeviceType';
 import AddBook from '../AddBook/AddBook';
+import ReadingForm from '../ReadingForm/ReadingForm';
 
 export default function Dashboard() {
-  // const isDesktop = useMediaQuery({ minWidth: 1280 });
-
   const deviceType = useDeviceType();
 
   const isDesktop = deviceType === 'desktop';
@@ -45,7 +43,12 @@ export default function Dashboard() {
         </>
       )}
 
-      {isMyReadingPage && <Progress />}
+      {isMyReadingPage && (
+        <>
+          <ReadingForm />
+          <Progress />
+        </>
+      )}
     </section>
   );
 }

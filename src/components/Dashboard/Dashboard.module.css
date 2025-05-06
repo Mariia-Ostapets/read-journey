@@ -2,17 +2,16 @@
   border-radius: 30px;
   background-color: var(--primary-bgr-color-gray);
   display: flex;
+  flex-direction: column;
 }
 
 .recommendedPage {
   padding: 20px 20px 15px;
-  flex-direction: column;
   gap: 25px;
 }
 
 .libraryPage {
   padding: 20px;
-  flex-direction: column;
   gap: 20px;
 }
 

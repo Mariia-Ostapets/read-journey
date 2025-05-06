@@ -11,6 +11,7 @@ import MyLibrarySelect from '../MyLibrarySelect/MyLibrarySelect';
 import NoResults from '../ui/NoResults/NoResults';
 import { selectStatus } from '../../redux/filters/selectors';
 import { setStatusFilter } from '../../redux/filters/slice';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyLibraryList() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -23,6 +24,7 @@ export default function MyLibraryList() {
   const status = useSelector(selectStatus);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getOwnBooks());
@@ -38,6 +40,12 @@ export default function MyLibraryList() {
   };
 
   const isNoResults = filteredBooks.length === 0;
+
+  const handleStartReading = () => {
+    closeModal();
+    navigate(`/reading/${selectedBook._id}`);
+    console.log('Navigate to reading page');
+  };
 
   return (
     <section className={css.myLibraryContainer}>
@@ -90,7 +98,11 @@ export default function MyLibraryList() {
                 <p className={css.modalBookPages}>
                   {selectedBook.totalPages} pages
                 </p>
-                <Button type="button" variant="addToLibrary">
+                <Button
+                  type="button"
+                  variant="addToLibrary"
+                  onClick={handleStartReading}
+                >
                   Start reading
                 </Button>
               </div>

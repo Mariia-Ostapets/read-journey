@@ -5,15 +5,33 @@
   flex-direction: column;
   margin: 0 auto;
   gap: 10px;
-  padding-top: 83px;
+  padding-top: 63px;
   padding-bottom: 100px;
 }
 
+.noResultsContainerReadingPage {
+  gap: 20px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
 @media screen and (min-width: 768px) {
-  .recommendedPageInfoContainer {
-    padding-top: 100px;
+  .noResultsContainerRecommendedPage,
+  .noResultsContainerLibraryPage {
+    padding-top: 86px;
     padding-bottom: 160px;
-    gap: 20px;
+  }
+
+  .noResultsContainerReadingPage {
+    gap: 50px;
+    padding-bottom: 68px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .noResultsContainerRecommendedPage,
+  .noResultsContainerLibraryPage {
+    padding-top: 147px;
   }
 }
 
@@ -27,21 +45,40 @@
   align-items: center;
 }
 
+.noResultsImgWrapperReadingPage {
+  width: 80px;
+  height: 80px;
+}
+
 @media screen and (min-width: 768px) {
   .noResultsImgWrapper {
     width: 130px;
     height: 130px;
   }
+
+  .noResultsImgWrapperReadingPage {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .noResultsText {
-  text-align: center;
-  max-width: 197px;
   font-size: 14px;
 }
 
+.noResultsTextRecommendedPage,
+.noResultsTextLibraryPage {
+  text-align: center;
+  max-width: 197px;
+}
+.noResultsTextReadingPage {
+  text-align: start;
+  color: var(--primary-color-gray);
+}
+
 @media screen and (min-width: 768px) {
-  .noResultsText {
+  .noResultsTextRecommendedPage,
+  .noResultsTextLibraryPage {
     max-width: 274px;
   }
 }

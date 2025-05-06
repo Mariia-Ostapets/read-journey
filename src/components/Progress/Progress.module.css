@@ -1,0 +1,11 @@
+.progressTitle {
+  margin-bottom: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .progressTitle {
+    font-size: 20px;
+  }
+}
