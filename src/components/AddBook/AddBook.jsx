@@ -134,7 +134,7 @@ export default function AddBook() {
           <input
             {...register('author')}
             className={clsx(css.authorInput, {
-              [css.inputValid]: isValidTitle,
+              [css.inputValid]: isValidAuthor,
               [css.inputInvalid]: errors.author,
             })}
             id={authorId}
@@ -157,7 +157,7 @@ export default function AddBook() {
           <input
             {...register('pages')}
             className={clsx(css.pagesInput, {
-              [css.inputValid]: isValidTitle,
+              [css.inputValid]: isValidPages,
               [css.inputInvalid]: errors.pages,
             })}
             id={pagesId}
