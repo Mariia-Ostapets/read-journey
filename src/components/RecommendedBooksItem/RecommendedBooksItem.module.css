@@ -1,5 +1,9 @@
 @import url(../RecommendedItem/RecommendedItem.module.css);
 
+.bookImgWrapper {
+  cursor: default;
+}
+
 .bookImg {
   width: 71px;
   height: 107px;

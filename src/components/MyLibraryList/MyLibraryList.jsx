@@ -9,6 +9,8 @@ import ModalForm from '../ui/ModalForm/ModalForm';
 import Button from '../ui/Button/Button';
 import MyLibrarySelect from '../MyLibrarySelect/MyLibrarySelect';
 import NoResults from '../ui/NoResults/NoResults';
+import { selectStatus } from '../../redux/filters/selectors';
+import { setStatusFilter } from '../../redux/filters/slice';
 
 export default function MyLibraryList() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -18,6 +20,7 @@ export default function MyLibraryList() {
 
   const books = useSelector(selectOwnBooks);
   const loading = useSelector(selectIsLoading);
+  const status = useSelector(selectStatus);
 
   const dispatch = useDispatch();
 
@@ -25,13 +28,22 @@ export default function MyLibraryList() {
     dispatch(getOwnBooks());
   }, [dispatch]);
 
-  const isNoResults = books.length === 0;
+  const filteredBooks = books.filter(book => {
+    if (status === 'all') return true;
+    return book.status === status;
+  });
+
+  const handleFilterChange = option => {
+    dispatch(setStatusFilter(option.value));
+  };
+
+  const isNoResults = filteredBooks.length === 0;
 
   return (
     <section className={css.myLibraryContainer}>
       <div className={css.titleAndSelectContainer}>
         <h2 className={css.myLibraryTitle}>My Library</h2>
-        <MyLibrarySelect />
+        <MyLibrarySelect status={status} onChange={handleFilterChange} />
       </div>
 
       {isNoResults ? (
@@ -40,7 +52,7 @@ export default function MyLibraryList() {
         <>
           {loading && <Loader />}
           <ul className={css.booksList}>
-            {books.map(book => (
+            {filteredBooks.map(book => (
               <li
                 className={css.booksItem}
                 key={book._id}

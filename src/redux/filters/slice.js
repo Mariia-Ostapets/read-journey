@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   title: '',
   author: '',
+  status: 'all',
 };
 
 const filtersSlice = createSlice({
@@ -17,8 +18,12 @@ const filtersSlice = createSlice({
       state.title = '';
       state.author = '';
     },
+    setStatusFilter: (state, action) => {
+      state.status = action.payload;
+    },
   },
 });
 
-export const { setFilters, clearFilters } = filtersSlice.actions;
+export const { setFilters, clearFilters, setStatusFilter } =
+  filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;

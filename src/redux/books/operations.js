@@ -22,6 +22,18 @@ export const getRecommendedBooks = createAsyncThunk(
   }
 );
 
+export const getAllBooks = createAsyncThunk(
+  'books/allBooks',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await api.get(`/books/recommend`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const addBookById = createAsyncThunk(
   'books/addBookById',
   async (id, thunkAPI) => {
@@ -79,6 +91,44 @@ export const getBookById = createAsyncThunk(
   async ({ id }, thunkAPI) => {
     try {
       const { data } = await api.get(`/books/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const startReading = createAsyncThunk(
+  'books/startReading',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await api.post('/books/reading/start', credentials);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const stopReading = createAsyncThunk(
+  'books/stopReading',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await api.post('/books/reading/finish', credentials);
+      return data;
+    } catch (error) {
+      console.log('error', error);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const deleteReading = createAsyncThunk(
+  'books/deleteReading',
+  async (credentials, thunkAPI) => {
+    const queryString = new URLSearchParams(credentials).toString();
+    try {
+      const { data } = await api.delete(`/books/reading?${queryString}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);

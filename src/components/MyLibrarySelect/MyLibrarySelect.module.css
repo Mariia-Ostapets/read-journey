@@ -1,0 +1,63 @@
+.filterWrapper {
+  border-radius: 12px;
+  border: 1px solid #3e3e3e;
+  width: 120px;
+  height: 40px;
+  background-color: transparent;
+  font-size: 12px;
+  line-height: 1.33;
+  position: relative;
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 14px;
+}
+
+.filterList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  border-radius: 12px;
+  background-color: var(--secondary-bgr-color-gray);
+  width: 100%;
+  padding-left: 14px;
+  padding-block: 14px;
+  color: var(--primary-color-gray);
+  margin-top: 4px;
+}
+
+.filterItem {
+  cursor: pointer;
+  transition: color var(--primary-transition);
+}
+
+.filterItem:hover {
+  color: var(--primary-color-white);
+}
+
+.filterItem:not(:last-child) {
+  margin-bottom: 7px;
+}
+
+@media screen and (min-width: 768px) {
+  .filterWrapper {
+    width: 153px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .filterContainer {
+    padding-block: 14px;
+  }
+
+  .filterList {
+    margin-top: 8px;
+  }
+}

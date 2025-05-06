@@ -2,9 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addBook,
   deleteOwnBook,
+  deleteReading,
+  getAllBooks,
   getBookById,
   getOwnBooks,
   getRecommendedBooks,
+  startReading,
+  stopReading,
 } from './operations';
 
 const handlePending = state => {
@@ -25,6 +29,7 @@ const initialState = {
   totalPages: 0,
   loading: false,
   error: null,
+  allBooks: [],
 };
 
 const booksSlice = createSlice({
@@ -52,6 +57,13 @@ const booksSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getRecommendedBooks.rejected, handleRejected);
+    builder.addCase(getAllBooks.pending, handlePending);
+    builder.addCase(getAllBooks.fulfilled, (state, action) => {
+      state.allBooks = action.payload.results;
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(getAllBooks.rejected, handleRejected);
     builder.addCase(addBook.pending, handlePending);
     builder.addCase(addBook.fulfilled, (state, action) => {
       state.ownBooks.push(action.payload);
@@ -82,6 +94,27 @@ const booksSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getBookById.rejected, handleRejected);
+    builder.addCase(startReading.pending, handlePending);
+    builder.addCase(startReading.fulfilled, (state, action) => {
+      state.readingBook = action.payload;
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(startReading.rejected, handleRejected);
+    builder.addCase(stopReading.pending, handlePending);
+    builder.addCase(stopReading.fulfilled, (state, action) => {
+      state.readingBook = action.payload;
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(stopReading.rejected, handleRejected);
+    builder.addCase(deleteReading.pending, handlePending);
+    builder.addCase(deleteReading.fulfilled, (state, action) => {
+      state.readingBook = action.payload;
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(deleteReading.rejected, handleRejected);
   },
 });
 
