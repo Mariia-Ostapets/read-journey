@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import css from './MyLibraryList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading, selectOwnBooks } from '../../redux/books/selectors';
-import { getOwnBooks } from '../../redux/books/operations';
+import { getBookById, getOwnBooks } from '../../redux/books/operations';
 import Loader from '../ui/Loader/Loader';
 import MyLibraryItem from '../MyLibraryItem/MyLibraryItem';
 import ModalForm from '../ui/ModalForm/ModalForm';
@@ -42,9 +42,9 @@ export default function MyLibraryList() {
   const isNoResults = filteredBooks.length === 0;
 
   const handleStartReading = () => {
+    dispatch(getBookById(selectedBook._id));
     closeModal();
     navigate(`/reading/${selectedBook._id}`);
-    console.log('Navigate to reading page');
   };
 
   return (

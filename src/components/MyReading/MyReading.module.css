@@ -18,3 +18,124 @@
     height: 100%;
   }
 }
+
+.myReadingTitle {
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .myReadingTitle {
+    font-size: 28px;
+    line-height: 1.14;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .myReadingTitle {
+    margin-bottom: 44px;
+  }
+}
+
+.myReadingItemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .myReadingItemContainer {
+    gap: 25px;
+  }
+}
+
+.bookImgWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bookImg {
+  width: 137px;
+  height: 208px;
+}
+
+@media screen and (min-width: 768px) {
+  .bookImg {
+    width: 169px;
+    height: 256px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bookImg {
+    width: 224px;
+    height: 340px;
+  }
+}
+
+.bookTitle {
+  font-size: 14px;
+  margin-bottom: 5px;
+  width: 146px;
+  text-align: center;
+}
+
+.bookAuthor {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--primary-color-gray);
+  width: 146px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .bookTitle {
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 4px;
+    width: 317px;
+  }
+
+  .bookAuthor {
+    font-size: 14px;
+    line-height: 1.29;
+    width: 317px;
+  }
+}
+
+.discriptionAndBtnWrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .discriptionAndBtnWrapper {
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .discriptionAndBtnWrapper {
+    gap: 25px;
+  }
+}
+
+.readingIcon {
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .readingIcon {
+    width: 50px;
+    height: 50px;
+  }
+}
