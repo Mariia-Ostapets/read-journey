@@ -1,1 +1,16 @@
 @import url(../../components/AddBook/AddBook.module.css);
+
+.pagesInput {
+  padding-left: 99px;
+  margin-top: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .pagesInput {
+    padding-left: 111px;
+  }
+}
+
+.formLabelAuthorPages {
+  top: 50%;
+}

@@ -114,7 +114,7 @@ export default function ReadingForm() {
 
           <div className={css.inputWrapper}>
             <label className={`${css.formLabel} ${css.formLabelAuthorPages}`}>
-              Number of pages:
+              Page number:
             </label>
             <input
               {...register('page')}
@@ -146,7 +146,7 @@ export default function ReadingForm() {
 
           <div className={css.inputWrapper}>
             <label className={`${css.formLabel} ${css.formLabelAuthorPages}`}>
-              Number of pages:
+              Page number:
             </label>
             <input
               {...register('page')}

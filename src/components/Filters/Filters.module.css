@@ -44,7 +44,6 @@
   line-height: 1.33;
   letter-spacing: -0.02em;
   color: var(--primary-color-gray);
-  cursor: pointer;
 }
 
 .formLabelAuthor {
@@ -72,6 +71,7 @@
   line-height: 1.33;
   letter-spacing: -0.02em;
   color: var(--primary-color-white);
+  cursor: pointer;
 }
 
 .bookInput {
