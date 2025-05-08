@@ -1,0 +1,108 @@
+.detailsContainer {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailsTitleAndBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .detailsContainer {
+    gap: 20px;
+    align-items: flex-start;
+  }
+}
+
+.detailsTitle {
+  font-size: 18px;
+  line-height: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .detailsTitle {
+    font-size: 20px;
+  }
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.detailsIcon {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .detailsIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.detailsBtn {
+  display: block;
+  outline: transparent;
+  background-color: transparent;
+  border: none;
+  transition: scale var(--primary-transition);
+  padding: 0;
+}
+
+.detailsBtn:hover {
+  scale: 1.1;
+}
+
+.activeIcon {
+  stroke: var(--primary-color-white);
+}
+
+.inactiveIcon {
+  stroke: var(--primary-color-gray);
+}
+
+.statText {
+  font-size: 14px;
+  color: var(--primary-color-gray);
+}
+
+.dairyAndStatContainer {
+  width: 100%;
+  border-radius: 12px;
+  background-color: var(--secondary-bgr-color-gray);
+}
+
+.dairyContainer {
+  padding: 16px;
+}
+
+.statContainer {
+  padding: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .dairyContainer {
+    padding-bottom: 31px;
+  }
+
+  .statContainer {
+    padding: 28px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dairyContainer {
+    padding: 20px 20px 28px;
+  }
+
+  .statContainer {
+    padding: 20px;
+  }
+}

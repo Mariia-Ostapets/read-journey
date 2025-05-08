@@ -21,7 +21,8 @@ export default function Button({ children, type, variant, ...rest }) {
           (variant === 'closeMobMenu' && css.closeMobMenuBtn) ||
           (variant === 'burger' && css.burgerBtn) ||
           (variant === 'deleteBook' && css.deleteBookBtn) ||
-          (variant === 'deleteDairyItem' && css.deleteDairyItemBtn)
+          (variant === 'deleteDairyItem' && css.deleteDairyItemBtn) ||
+          (variant === 'details' && css.detailsBtn)
       )}
       {...rest}
     >

@@ -61,10 +61,15 @@ export default function ReadingForm() {
   };
 
   const onSubmitStop = async ({ page }) => {
+    if (+page > totalPages) {
+      toast.error(`Page number cannot exceed the total pages of the book.`);
+      return;
+    }
+
     try {
       await dispatch(stopReading({ page, id: bookId })).unwrap();
       reset();
-      if (+page >= totalPages) {
+      if (+page === totalPages) {
         reset();
         setShowSuccessModal(true);
       }
@@ -99,7 +104,6 @@ export default function ReadingForm() {
     !errors.page;
 
   const book = useSelector(selectReadingBook);
-
   const bookStatus = getBookStatus(book);
 
   return (
