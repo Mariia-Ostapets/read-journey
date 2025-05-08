@@ -77,12 +77,12 @@ export default function MyLibraryList() {
             ))}
           </ul>
 
-          {selectedBook && (
-            <ModalForm
-              modalIsOpen={!!selectedBook}
-              closeModal={closeModal}
-              variant="book"
-            >
+          <ModalForm
+            modalIsOpen={!!selectedBook}
+            closeModal={closeModal}
+            variant="book"
+          >
+            {selectedBook && (
               <div className={css.modalBookContainer}>
                 <div className={css.modalBookImgWrapper}>
                   <img
@@ -106,8 +106,8 @@ export default function MyLibraryList() {
                   Start reading
                 </Button>
               </div>
-            </ModalForm>
-          )}
+            )}
+          </ModalForm>
         </>
       )}
     </section>

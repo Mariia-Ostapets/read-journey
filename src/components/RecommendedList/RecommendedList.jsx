@@ -104,75 +104,75 @@ export default function RecommendedList() {
   };
 
   return (
-    <section className={css.recommendedListContainer}>
-      <h2 className={css.recommendedListTitle}>Recommended</h2>
+    <>
+      <section className={css.recommendedListContainer}>
+        <h2 className={css.recommendedListTitle}>Recommended</h2>
 
-      {isNoResults ? (
-        <NoResults />
-      ) : (
-        <>
-          {loading && <Loader />}
-          <ul className={css.booksList}>
-            {books.map(book => (
-              <li
-                className={css.booksItem}
-                key={book._id}
-                onClick={() => openModal(book)}
-              >
-                <RecommendedItem
-                  bookTitle={book.title}
-                  img={book.imageUrl}
-                  author={book.author}
-                  totalPages={book.totalPages}
-                  id={book._id}
-                />
-              </li>
-            ))}
-          </ul>
-
-          {selectedBook && (
-            <ModalForm
-              modalIsOpen={!!selectedBook}
-              closeModal={closeModal}
-              variant="book"
-            >
-              <div className={css.modalBookContainer}>
-                <div className={css.modalBookImgWrapper}>
-                  <img
-                    className={css.modalBookImg}
-                    src={selectedBook.imageUrl}
-                    alt={selectedBook.bookTitle}
-                  />
-                </div>
-                <h3 className={css.modalBookTitle}>{selectedBook.title}</h3>
-                <p className={css.modalBookAuthor}>{selectedBook.author}</p>
-                <p className={css.modalBookPages}>
-                  {selectedBook.totalPages} pages
-                </p>
-                <Button
-                  type="button"
-                  variant="addToLibrary"
-                  onClick={handleAddBook}
+        {isNoResults ? (
+          <NoResults />
+        ) : (
+          <>
+            {loading && <Loader />}
+            <ul className={css.booksList}>
+              {books.map(book => (
+                <li
+                  className={css.booksItem}
+                  key={book._id}
+                  onClick={() => openModal(book)}
                 >
-                  Add to library
-                </Button>
-              </div>
-            </ModalForm>
-          )}
+                  <RecommendedItem
+                    bookTitle={book.title}
+                    img={book.imageUrl}
+                    author={book.author}
+                    totalPages={book.totalPages}
+                    id={book._id}
+                  />
+                </li>
+              ))}
+            </ul>
 
-          {showSuccessModal && (
-            <ModalForm
-              modalIsOpen={showSuccessModal}
-              closeModal={closeSuccessModal}
-              variant="notification"
+            <Pagination />
+          </>
+        )}
+      </section>
+
+      <ModalForm
+        modalIsOpen={!!selectedBook}
+        closeModal={closeModal}
+        variant="book"
+      >
+        {selectedBook && (
+          <div className={css.modalBookContainer}>
+            <div className={css.modalBookImgWrapper}>
+              <img
+                className={css.modalBookImg}
+                src={selectedBook.imageUrl}
+                alt={selectedBook.bookTitle}
+              />
+            </div>
+            <h3 className={css.modalBookTitle}>{selectedBook.title}</h3>
+            <p className={css.modalBookAuthor}>{selectedBook.author}</p>
+            <p className={css.modalBookPages}>
+              {selectedBook.totalPages} pages
+            </p>
+            <Button
+              type="button"
+              variant="addToLibrary"
+              onClick={handleAddBook}
             >
-              <Info />
-            </ModalForm>
-          )}
+              Add to library
+            </Button>
+          </div>
+        )}
+      </ModalForm>
 
-          <Pagination />
-        </>
-      )}
-    </section>
+      <ModalForm
+        modalIsOpen={showSuccessModal}
+        closeModal={closeSuccessModal}
+        variant="notification"
+      >
+        <Info />
+      </ModalForm>
+    </>
   );
 }
