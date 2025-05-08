@@ -2,21 +2,23 @@ import css from './ReadingForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useId, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import clsx from 'clsx';
 import Info from '../ui/Info/Info';
 import ModalForm from '../ui/ModalForm/ModalForm';
 import Button from '../ui/Button/Button';
+import { selectReadingBook } from '../../redux/books/selectors';
+import { getBookStatus } from '../../utils';
+import toast from 'react-hot-toast';
+import { startReading, stopReading } from '../../redux/books/operations';
+import { useParams } from 'react-router-dom';
 
 const schema = yup.object().shape({
-  pages: yup
+  page: yup
     .number()
-    .transform((value, originalValue) =>
-      String(originalValue).trim() === '' ? undefined : Number(originalValue)
-    )
-    .required('Pages are required')
     .typeError('Pages must be a number')
+    .required('Pages are required')
     .positive('Must be positive')
     .integer('Must be an integer'),
 });
@@ -26,7 +28,11 @@ export default function ReadingForm() {
 
   const closeSuccessModal = () => setShowSuccessModal(false);
 
-  const pagesId = useId();
+  const pageId = useId();
+
+  const { totalPages } = useSelector(selectReadingBook);
+
+  const { bookId } = useParams();
 
   const {
     register,
@@ -37,31 +43,35 @@ export default function ReadingForm() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      title: '',
-      author: '',
-      pages: '',
+      page: '',
     },
   });
 
-  const pages = useWatch({ control, name: 'pages' });
+  const page = useWatch({ control, name: 'page' });
 
   const dispatch = useDispatch();
 
-  // const onSubmit = async ({ title, author, pages }) => {
-  //   const newBook = {
-  //     title,
-  //     author,
-  //     totalPages: pages,
-  //   };
+  const onSubmitStart = async ({ page }) => {
+    try {
+      await dispatch(startReading({ page, id: bookId })).unwrap();
+      reset();
+    } catch (error) {
+      toast.error(`Failed to start reading: ${error}.`);
+    }
+  };
 
-  //   try {
-  //     await dispatch(addBook(newBook)).unwrap();
-  //     setShowSuccessModal(true);
-  //     reset();
-  //   } catch (error) {
-  //     toast.error(`Failed to add book: ${error}. Please, try again.`);
-  //   }
-  // };
+  const onSubmitStop = async ({ page }) => {
+    try {
+      await dispatch(stopReading({ page, id: bookId })).unwrap();
+      reset();
+      if (+page >= totalPages) {
+        reset();
+        setShowSuccessModal(true);
+      }
+    } catch (error) {
+      toast.error(`Failed to stop reading: ${error}. Please, try again.`);
+    }
+  };
 
   const renderIcon = (isValid, hasError) => {
     if (isValid) {
@@ -81,54 +91,89 @@ export default function ReadingForm() {
     return null;
   };
 
-  const isValidPages =
-    pages !== '' &&
-    !isNaN(pages) &&
-    Number(pages) > 0 &&
-    Number.isInteger(Number(pages)) &&
-    !errors.pages;
+  const isValidPage =
+    page !== '' &&
+    !isNaN(page) &&
+    Number(page) > 0 &&
+    Number.isInteger(Number(page)) &&
+    !errors.page;
+
+  const book = useSelector(selectReadingBook);
+
+  const bookStatus = getBookStatus(book);
 
   return (
     <>
-      {/* <form className={css.addBookForm} onSubmit={handleSubmit(onSubmit)}> */}
-      <form className={css.addBookForm}>
-        <h1 className={css.addBookTitle}>Start page:</h1>
+      {bookStatus.status === 'active' ? (
+        <form className={css.addBookForm} onSubmit={handleSubmit(onSubmitStop)}>
+          <h1 className={css.addBookTitle}>Stop page:</h1>
 
-        <div className={css.inputWrapper}>
-          <label className={`${css.formLabel} ${css.formLabelAuthorPages}`}>
-            Number of pages:
-          </label>
-          <input
-            {...register('pages')}
-            className={clsx(css.pagesInput, {
-              [css.inputValid]: isValidPages,
-              [css.inputInvalid]: errors.pages,
-            })}
-            id={pagesId}
-            type="text"
-            placeholder="0"
-          />
-          {renderIcon(isValidPages, errors.pages)}
-        </div>
-        {isValidPages && <p className={css.successMessage}>Pages are secure</p>}
-        {errors.pages && (
-          <p className={css.errorMessage}>{errors.pages.message}</p>
-        )}
+          <div className={css.inputWrapper}>
+            <label className={`${css.formLabel} ${css.formLabelAuthorPages}`}>
+              Number of pages:
+            </label>
+            <input
+              {...register('page')}
+              className={clsx(css.pagesInput, {
+                [css.inputValid]: isValidPage,
+                [css.inputInvalid]: errors.page,
+              })}
+              id={pageId}
+              type="text"
+              placeholder="0"
+            />
+            {renderIcon(isValidPage, errors.page)}
+          </div>
+          {isValidPage && <p className={css.successMessage}>Pages are valid</p>}
+          {errors.page && (
+            <p className={css.errorMessage}>{errors.page.message}</p>
+          )}
 
-        <Button type="submit" variant="start">
-          To start
-        </Button>
-      </form>
-
-      {showSuccessModal && (
-        <ModalForm
-          modalIsOpen={showSuccessModal}
-          closeModal={closeSuccessModal}
-          variant="notification"
+          <Button type="submit" variant="start">
+            To stop
+          </Button>
+        </form>
+      ) : (
+        <form
+          className={css.addBookForm}
+          onSubmit={handleSubmit(onSubmitStart)}
         >
-          <Info />
-        </ModalForm>
+          <h1 className={css.addBookTitle}>Start page:</h1>
+
+          <div className={css.inputWrapper}>
+            <label className={`${css.formLabel} ${css.formLabelAuthorPages}`}>
+              Number of pages:
+            </label>
+            <input
+              {...register('page')}
+              className={clsx(css.pagesInput, {
+                [css.inputValid]: isValidPage,
+                [css.inputInvalid]: errors.page,
+              })}
+              id={pageId}
+              type="text"
+              placeholder="0"
+            />
+            {renderIcon(isValidPage, errors.page)}
+          </div>
+          {isValidPage && <p className={css.successMessage}>Pages are valid</p>}
+          {errors.page && (
+            <p className={css.errorMessage}>{errors.page.message}</p>
+          )}
+
+          <Button type="submit" variant="start">
+            To start
+          </Button>
+        </form>
       )}
+
+      <ModalForm
+        modalIsOpen={showSuccessModal}
+        closeModal={closeSuccessModal}
+        variant="notification"
+      >
+        <Info />
+      </ModalForm>
     </>
   );
 }

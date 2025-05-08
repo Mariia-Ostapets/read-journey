@@ -12,6 +12,7 @@ import NoResults from '../ui/NoResults/NoResults';
 import { selectStatus } from '../../redux/filters/selectors';
 import { setStatusFilter } from '../../redux/filters/slice';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function MyLibraryList() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -41,10 +42,20 @@ export default function MyLibraryList() {
 
   const isNoResults = filteredBooks.length === 0;
 
-  const handleStartReading = () => {
-    dispatch(getBookById(selectedBook._id));
-    closeModal();
-    navigate(`/reading/${selectedBook._id}`);
+  const handleStartReading = async () => {
+    try {
+      await dispatch(getBookById(selectedBook._id)).unwrap();
+      // if (selectedBook.status === 'done') {
+      //   toast.error(
+      //     'This book has already been read. To reread it, please add it again to your library.'
+      //   );
+      //   return;
+      // }
+      closeModal();
+      navigate(`/reading/${selectedBook._id}`);
+    } catch (error) {
+      toast.error(error?.message || 'Failed to get book. Please, try again.');
+    }
   };
 
   return (

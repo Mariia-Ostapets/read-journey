@@ -41,7 +41,7 @@ export default function ModalForm({
     } else if (variant === 'notification') {
       variantStyles = {
         width: isMobile ? '335px' : '342px',
-        maxHeight: isMobile ? '290px' : '308px',
+        // maxHeight: isMobile ? '290px' : '308px',
         padding: isMobile ? '60px 46px' : '50px',
       };
     }

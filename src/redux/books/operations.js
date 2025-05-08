@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axiosInstance';
+import toast from 'react-hot-toast';
 
 export const getRecommendedBooks = createAsyncThunk(
   'books/recommended',
@@ -17,6 +18,9 @@ export const getRecommendedBooks = createAsyncThunk(
       if (page > data.totalPages) page = 1;
       return { ...data, page };
     } catch (error) {
+      // if (error.response?.status === 401) {
+      //   toast.error('Unauthorized. Please log in.');
+      // }
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -105,6 +109,18 @@ export const startReading = createAsyncThunk(
       const { data } = await api.post('/books/reading/start', credentials);
       return data;
     } catch (error) {
+      const status = error?.response?.status;
+      const message =
+        error?.response?.data?.message ||
+        'Something went wrong. Please, try again.';
+
+      if (status === 409) {
+        if (message.includes('already read')) {
+          return thunkAPI.rejectWithValue(
+            'This book is already read. To reread it, please delete it from your library and add it again.'
+          );
+        }
+      }
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -117,7 +133,6 @@ export const stopReading = createAsyncThunk(
       const { data } = await api.post('/books/reading/finish', credentials);
       return data;
     } catch (error) {
-      console.log('error', error);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
