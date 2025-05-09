@@ -41,10 +41,10 @@ export default function Dairy() {
   });
 
   return (
-    <div>
+    <ul className={css.dairyList}>
       {diaryData.map((entry, index) => (
         <DairyEntry key={index} data={entry} book={book} />
       ))}
-    </div>
+    </ul>
   );
 }

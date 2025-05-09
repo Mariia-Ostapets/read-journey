@@ -20,13 +20,11 @@ export default function DairyEntry({ book, data }) {
   };
 
   return (
-    <div className={css.diaryEntry}>
-      <div>
-        <div className={css.date}>{date}</div>
-        <div className={css.details}>
-          <span>{percentage}%</span>
-          <span>{totalMinutes} minutes</span>
-        </div>
+    <li className={css.diaryEntry}>
+      <h3 className={css.date}>{date}</h3>
+      <div className={css.details}>
+        <p className={css.percentage}>{percentage}%</p>
+        <p className={css.minutes}>{totalMinutes} minutes</p>
       </div>
 
       <div className={css.stats}>
@@ -38,6 +36,6 @@ export default function DairyEntry({ book, data }) {
       <button className={css.trashBtn} onClick={handleDelete}>
         🗑
       </button>
-    </div>
+    </li>
   );
 }

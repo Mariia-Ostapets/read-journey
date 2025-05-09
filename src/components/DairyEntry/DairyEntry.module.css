@@ -1,27 +1,29 @@
 .diaryEntry {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1e1e1e;
-  color: #ffffff;
-  padding: 16px;
-  margin-bottom: 8px;
-  border-radius: 12px;
-  font-family: 'Segoe UI', sans-serif;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .date {
-  font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
 }
 
 .details {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  color: #aaaaaa;
+}
+
+.percentage {
   font-size: 14px;
+}
+
+.minutes {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--primary-color-gray);
 }
 
 .stats {
