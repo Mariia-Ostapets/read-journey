@@ -108,5 +108,9 @@
 <path fill="none" stroke="#e85050" style="stroke: var(--color8, #e85050)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M13.333 14.667v8"></path>
 <path fill="none" stroke="#e85050" style="stroke: var(--color8, #e85050)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M18.667 14.667v8"></path>
 </symbol>
+<symbol id="icon-dairy-graph" viewBox="0 0 78 32">
+<path fill="#30b94d" style="fill: var(--color2, #30b94d)" opacity="0.2" d="M78.222 1.778l-76.444 10.604v19.618h76.444v-30.222z"></path>
+<path fill="#30b94d" style="fill: var(--color2, #30b94d)" d="M75.129 0.284l-72.857 11.779c-0.969 0.157-1.628 1.069-1.471 2.039l0.050 0.308c0.157 0.969 1.069 1.628 2.039 1.471l72.857-11.779c0.969-0.157 1.628-1.069 1.471-2.039l-0.050-0.308c-0.157-0.969-1.069-1.628-2.039-1.471z"></path>
+</symbol>
 </defs>
 </svg>
