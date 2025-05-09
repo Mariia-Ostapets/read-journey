@@ -1,0 +1,58 @@
+.diaryEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.date {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+.stats {
+  text-align: right;
+}
+
+.pages,
+.speed {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.graphBar {
+  margin-top: 8px;
+  height: 6px;
+  background: linear-gradient(to right, #28a745, #28a745);
+  border-radius: 4px;
+  width: 80px;
+}
+
+.trashBtn {
+  background: none;
+  border: none;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 16px;
+  transition: color 0.2s ease;
+}
+
+.trashBtn:hover {
+  color: #ff4d4f;
+}
