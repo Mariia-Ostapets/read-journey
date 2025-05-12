@@ -28,7 +28,7 @@
 }
 
 .dairyList::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 .dairyList::-webkit-scrollbar-track {
@@ -38,5 +38,6 @@
 .dairyList::-webkit-scrollbar-thumb {
   background-color: var(--secondary-bgr-color-gray);
   border-radius: 15px;
-  width: 5px;
+  /* width: 5px; */
+  background-color: red;
 }

@@ -80,7 +80,7 @@
 }
 
 .dairyContainer {
-  padding: 16px 16px 0px;
+  padding: 0px 16px;
 }
 
 .statContainer {
@@ -95,7 +95,7 @@
 
 @media screen and (min-width: 1280px) {
   .dairyContainer {
-    padding: 20px 20px 0px;
+    padding: 0px 20px;
   }
 
   .statContainer {
