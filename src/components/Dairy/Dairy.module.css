@@ -1,23 +1,42 @@
 .dairyList {
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   gap: 17px;
   overflow-y: auto;
   position: relative;
-  /* height: 211px; */
+  max-height: 211px;
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .dairyList {
-    /* height: 252px; */
+    max-height: 252px;
     gap: 14px;
+    padding-right: 16px;
+    margin-right: -26px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .dairyList {
     gap: 22px;
-    /* max-height: 373px; */
+    max-height: 373px;
+    padding-right: 26px;
+    margin-right: -32px;
   }
+}
+
+.dairyList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dairyList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dairyList::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-bgr-color-gray);
+  border-radius: 15px;
+  width: 5px;
 }

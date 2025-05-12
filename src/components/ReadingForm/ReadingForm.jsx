@@ -62,7 +62,9 @@ export default function ReadingForm() {
 
   const onSubmitStop = async ({ page }) => {
     if (+page > totalPages) {
-      toast.error(`Page number cannot exceed the total pages of the book.`);
+      toast.error(
+        `Page number cannot exceed the total pages (${totalPages}) of the book.`
+      );
       return;
     }
 
