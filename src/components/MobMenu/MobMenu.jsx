@@ -32,6 +32,18 @@ export default function MobMenu({ onClose, isOpen }) {
     }
   };
 
+  useEffect(() => {
+    const updateVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    updateVh();
+    window.addEventListener('resize', updateVh);
+
+    return () => window.removeEventListener('resize', updateVh);
+  }, []);
+
   return (
     <div className={css.mobMenuBackdrop} onClick={handleBackdropClick}>
       <div className={`${css.mobMenuWrapper} ${isOpen ? css.open : ''}`}>

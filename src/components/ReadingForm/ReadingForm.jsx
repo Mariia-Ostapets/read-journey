@@ -52,6 +52,13 @@ export default function ReadingForm() {
   const dispatch = useDispatch();
 
   const onSubmitStart = async ({ page }) => {
+    if (+page > totalPages) {
+      toast.error(
+        `Page number cannot exceed the total pages (${totalPages}) of the book.`
+      );
+      return;
+    }
+
     try {
       await dispatch(startReading({ page, id: bookId })).unwrap();
       reset();
