@@ -1,20 +1,23 @@
+.scrollWrapper {
+  position: relative;
+  overflow: visible;
+}
+
 .dairyList {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: column-reverse;
   gap: 17px;
   overflow-y: auto;
   position: relative;
   max-height: 211px;
-  width: 100%;
+  width: calc(100% + 26px);
+  padding-right: 24px;
 }
 
 @media screen and (min-width: 768px) {
   .dairyList {
     max-height: 252px;
     gap: 14px;
-    padding-right: 16px;
-    margin-right: -26px;
   }
 }
 
@@ -22,8 +25,8 @@
   .dairyList {
     gap: 22px;
     max-height: 373px;
-    padding-right: 26px;
-    margin-right: -32px;
+    width: calc(100% + 30px);
+    padding-right: 28px;
   }
 }
 
@@ -38,6 +41,141 @@
 .dairyList::-webkit-scrollbar-thumb {
   background-color: var(--secondary-bgr-color-gray);
   border-radius: 15px;
-  /* width: 5px; */
-  background-color: red;
+}
+
+.dairyItem {
+  position: relative;
+  width: 100%;
+}
+
+.firstDairyItem {
+  padding-top: 16px;
+}
+
+@media screen and (min-width: 1280px) {
+  .firstDairyItem {
+    padding-top: 20px;
+  }
+}
+
+.dairyItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: 4px solid var(--primary-color-gray);
+  border-radius: 4px;
+  background-color: var(--primary-bgr-color-black);
+  z-index: 1;
+}
+
+.firstDairyItem::before {
+  border-color: var(--primary-color-white);
+  top: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .dairyItem::before {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .firstDairyItem::before {
+    top: 20px;
+  }
+}
+
+.line {
+  position: absolute;
+  top: 16px;
+  width: 2px;
+  left: 8px;
+  height: calc(100% + 17px);
+  background-color: var(--primary-bgr-color-gray);
+  z-index: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .line {
+    top: 16px;
+    left: 10px;
+    height: calc(100% + 14px);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .line {
+    top: 20px;
+    height: calc(100% + 22px);
+  }
+}
+
+.dateAndPagesContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 23px;
+  padding-right: 20px;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .dateAndPagesContainer {
+    padding-left: 30px;
+    padding-right: 22px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dateAndPagesContainer {
+    margin-bottom: 28px;
+  }
+}
+
+.date {
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
+}
+
+.pages {
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--primary-color-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .date {
+    font-size: 16px;
+    line-height: 1.13;
+  }
+
+  .pages {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+}
+
+.dairyEntriesList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 23px;
+  gap: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .dairyEntriesList {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dairyEntriesList {
+    gap: 28px;
+  }
 }

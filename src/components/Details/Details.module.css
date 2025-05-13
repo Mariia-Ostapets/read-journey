@@ -81,6 +81,7 @@
 
 .dairyContainer {
   padding: 0px 16px;
+  overflow: visible;
 }
 
 .statContainer {

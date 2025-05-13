@@ -1,115 +1,26 @@
 .diaryEntry {
   display: flex;
+  justify-content: space-between;
+}
+
+.diaryEntry:last-of-type {
+  padding-bottom: 16px;
+}
+
+.percentageAndMinutesContainer {
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: relative;
-  margin-left: 23px;
+  gap: 4px;
 }
 
 @media screen and (min-width: 768px) {
-  .diaryEntry {
-    margin-left: 30px;
+  .percentageAndMinutesContainer {
+    gap: 8px;
   }
-}
-
-.diaryEntry:first-of-type {
-  padding-top: 16px;
-}
-
-/* @media screen and (min-width: 768px) {
-  .diaryEntry:last-of-type {
-    padding-bottom: 31px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .diaryEntry:last-of-type {
-    padding-bottom: 28px;
-  }
-} */
-
-.firstEntry::before {
-  content: '';
-  position: absolute;
-  top: 16px;
-  left: -23px;
-  width: 16px;
-  height: 16px;
-  border: 4px solid var(--primary-color-gray);
-  border-radius: 4px;
-  background-color: var(--primary-bgr-color-black);
-  z-index: 1;
-}
-
-@media screen and (min-width: 768px) {
-  .firstEntry::before {
-    width: 20px;
-    height: 20px;
-    left: -30px;
-  }
-}
-
-.topEntry::before {
-  border-color: var(--primary-color-white);
-}
-
-.line {
-  position: absolute;
-  top: 16px;
-  width: 2px;
-  left: -16px;
-  height: calc(100% + 17px);
-  background-color: var(--primary-bgr-color-gray);
-  z-index: 0;
-}
-
-@media screen and (min-width: 768px) {
-  .line {
-    left: -20px;
-    height: calc(100% + 14px);
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .line {
-    height: calc(100% + 22px);
-  }
-}
-
-.dateAndPagesContainer {
-  display: flex;
-  gap: 110px;
-}
-
-@media screen and (min-width: 768px) {
-  .dateAndPagesContainer {
-    gap: 102px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .dateAndPagesContainer {
-    gap: 86px;
-  }
-}
-
-.detailsAndStatsContainer {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.date {
-  font-size: 12px;
-  line-height: 1.33;
-  letter-spacing: 0.02em;
-  margin-bottom: 16px;
 }
 
 .percentage {
   font-size: 14px;
-  margin-bottom: 4px;
 }
 
 .minutes {
@@ -119,16 +30,9 @@
 }
 
 @media screen and (min-width: 768px) {
-  .date {
-    font-size: 16px;
-    line-height: 1.13;
-    letter-spacing: 0.02em;
-  }
-
   .percentage {
     font-size: 20px;
     line-height: 1;
-    margin-bottom: 8px;
   }
 
   .minutes {
@@ -137,16 +41,10 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
-  .date {
-    margin-bottom: 28px;
-  }
-}
-
 .statsAndBtnContainer {
   display: flex;
   gap: 6px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 @media screen and (min-width: 768px) {
@@ -158,15 +56,8 @@
 .stats {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 7px;
   align-items: flex-end;
-  color: var(--primary-color-gray);
-}
-
-.pages {
-  font-size: 12px;
-  line-height: 1.33;
-  color: var(--primary-color-gray);
 }
 
 .statsIcon {
@@ -177,21 +68,12 @@
 .speed {
   font-size: 10px;
   line-height: 1.2;
-  max-width: 50px;
+  max-width: 55px;
   text-align: end;
+  color: var(--primary-color-gray);
 }
 
 @media screen and (min-width: 768px) {
-  .stats {
-    gap: 7px;
-  }
-
-  .pages {
-    font-size: 14px;
-    line-height: 1.29;
-    padding-bottom: 11px;
-  }
-
   .statsIcon {
     width: 59px;
     height: 25px;
@@ -200,12 +82,6 @@
   .speed {
     font-size: 12px;
     line-height: 1.17;
-    max-width: 59px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .pages {
-    padding-bottom: 23px;
+    max-width: 65px;
   }
 }
