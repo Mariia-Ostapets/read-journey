@@ -13,6 +13,7 @@ import { getBookStatus } from '../../utils';
 import toast from 'react-hot-toast';
 import { startReading, stopReading } from '../../redux/books/operations';
 import { useParams } from 'react-router-dom';
+import { selectStatus } from '../../redux/filters/selectors';
 
 const schema = yup.object().shape({
   page: yup
@@ -21,17 +22,16 @@ const schema = yup.object().shape({
     .required('Pages are required')
     .positive('Must be positive')
     .integer('Must be an integer'),
+  // .min(maxReadPage, `Page must be ≥ ${maxReadPage}`)
+  // .max(totalPages, `Page cannot be more than ${totalPages}`),
 });
 
 export default function ReadingForm() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const closeSuccessModal = () => setShowSuccessModal(false);
-
   const pageId = useId();
-
   const { totalPages } = useSelector(selectReadingBook);
-
   const { bookId } = useParams();
 
   const {
@@ -48,14 +48,58 @@ export default function ReadingForm() {
   });
 
   const page = useWatch({ control, name: 'page' });
+  const book = useSelector(selectReadingBook);
+
+  const maxReadPage =
+    book?.progress?.reduce((max, session) => {
+      if (session.finishPage && session.finishPage > max) {
+        return session.finishPage;
+      }
+      return max;
+    }, 0) || 0;
 
   const dispatch = useDispatch();
 
+  const status = useSelector(selectStatus);
+
   const onSubmitStart = async ({ page }) => {
+    const isFirstSession = !book?.progress || book.progress.length === 0;
+
+    if (status === 'done') {
+      toast.error(
+        'This book is already read. To reread it, please delete it from your library and add it again.'
+      );
+      reset();
+      return;
+    }
+
+    if (isFirstSession && +page !== 1) {
+      toast.error('The first reading session must start from page 1.');
+      reset();
+      return;
+    }
+
+    if (+page < maxReadPage + 1) {
+      toast.error(
+        `You cannot start from a page (${page}) earlier than the last read page (${maxReadPage}).`
+      );
+      reset();
+      return;
+    }
+
+    if (!isFirstSession && +page > maxReadPage + 1) {
+      toast.error(
+        `You cannot skip pages. The starting page must not be greater than the last read page (${maxReadPage}).`
+      );
+      reset();
+      return;
+    }
+
     if (+page > totalPages) {
       toast.error(
         `Page number cannot exceed the total pages (${totalPages}) of the book.`
       );
+      reset();
       return;
     }
 
@@ -68,10 +112,21 @@ export default function ReadingForm() {
   };
 
   const onSubmitStop = async ({ page }) => {
+    if (+page < maxReadPage + 1) {
+      toast.error(
+        `You cannot stop reading on page (${page}) earlier than the start read page (${
+          maxReadPage + 1
+        }).`
+      );
+      reset();
+      return;
+    }
+
     if (+page > totalPages) {
       toast.error(
         `Page number cannot exceed the total pages (${totalPages}) of the book.`
       );
+      reset();
       return;
     }
 
@@ -112,7 +167,6 @@ export default function ReadingForm() {
     Number.isInteger(Number(page)) &&
     !errors.page;
 
-  const book = useSelector(selectReadingBook);
   const bookStatus = getBookStatus(book);
 
   return (

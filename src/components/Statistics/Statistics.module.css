@@ -1,1 +1,76 @@
+.statChart {
+  width: 116px;
+  height: 116px;
+  border-radius: 12px;
+}
 
+.statProgressCircle {
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.statTotalPercent {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.11;
+  fill: var(--primary-color-white);
+}
+
+@media screen and (min-width: 768px) {
+  .statChart {
+    width: 138px;
+    height: 138px;
+  }
+
+  .statTotalPercent {
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .statChart {
+    width: 168px;
+    height: 168px;
+  }
+}
+
+.statInfoContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.statProgressMark {
+  width: 14px;
+  height: 14px;
+  background-color: var(--accent-color-green);
+  border-radius: 4px;
+}
+
+.statProgressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+.statProgressPercent {
+  font-size: 14px;
+  color: var(--primary-color-white);
+}
+
+.statProgressPages {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--primary-color-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .statProgressContainer {
+    gap: 8px;
+  }
+
+  .statProgressPages {
+    font-size: 12px;
+    line-height: 1.17;
+  }
+}
