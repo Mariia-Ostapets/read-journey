@@ -64,10 +64,6 @@ export const calculateSpeed = (pagesRead, startReading, finishReading) => {
   return totalSeconds > 0 ? Math.round((pagesRead / totalSeconds) * 3600) : 0;
 };
 
-// export const calculatePercentage = (finishPage, totalPages) => {
-//   return ((Number(finishPage) / totalPages) * 100).toFixed(1);
-// };
-
 export const calculatePercentage = (startPage, finishPage, totalPages) => {
   const start = Number(startPage);
   const finish = Number(finishPage);

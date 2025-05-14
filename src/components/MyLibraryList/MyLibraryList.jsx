@@ -45,12 +45,6 @@ export default function MyLibraryList() {
   const handleStartReading = async () => {
     try {
       await dispatch(getBookById(selectedBook._id)).unwrap();
-      // if (selectedBook.status === 'done') {
-      //   toast.error(
-      //     'This book has already been read. To reread it, please add it again to your library.'
-      //   );
-      //   return;
-      // }
       closeModal();
       navigate(`/reading/${selectedBook._id}`);
     } catch (error) {

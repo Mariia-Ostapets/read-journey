@@ -13,7 +13,6 @@ import { getBookStatus } from '../../utils';
 import toast from 'react-hot-toast';
 import { startReading, stopReading } from '../../redux/books/operations';
 import { useParams } from 'react-router-dom';
-import { selectStatus } from '../../redux/filters/selectors';
 
 const schema = yup.object().shape({
   page: yup
@@ -22,8 +21,6 @@ const schema = yup.object().shape({
     .required('Pages are required')
     .positive('Must be positive')
     .integer('Must be an integer'),
-  // .min(maxReadPage, `Page must be ≥ ${maxReadPage}`)
-  // .max(totalPages, `Page cannot be more than ${totalPages}`),
 });
 
 export default function ReadingForm() {
@@ -60,12 +57,10 @@ export default function ReadingForm() {
 
   const dispatch = useDispatch();
 
-  const status = useSelector(selectStatus);
-
   const onSubmitStart = async ({ page }) => {
     const isFirstSession = !book?.progress || book.progress.length === 0;
 
-    if (status === 'done') {
+    if (book.status === 'done') {
       toast.error(
         'This book is already read. To reread it, please delete it from your library and add it again.'
       );
