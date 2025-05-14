@@ -5,7 +5,7 @@ import css from './Header.module.css';
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MobMenu from '../MobMenu/MobMenu';
 import { useMediaQuery } from 'react-responsive';
 import { useDeviceType } from '../../hooks/useDeviceType';
@@ -34,6 +34,17 @@ export default function Header() {
 
   const isMobile = deviceType === 'mobile';
   const isDesktop = deviceType === 'desktop';
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   return (
     <div className={css.headerContainer}>

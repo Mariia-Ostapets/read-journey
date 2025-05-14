@@ -13,8 +13,8 @@
   top: 0;
   right: 0;
   width: 200px;
-  /* height: 100vh; */
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
+  /* height: calc(var(--vh, 1vh) * 100); */
   background-color: var(--secondary-bgr-color-gray);
   z-index: 100;
   display: flex;
