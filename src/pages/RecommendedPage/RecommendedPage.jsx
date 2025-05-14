@@ -1,12 +1,16 @@
 import Dashboard from '../../components/Dashboard/Dashboard';
 import RecommendedList from '../../components/RecommendedList/RecommendedList';
+import DocumentTitle from '../../components/ui/DocumentTitle';
 import css from './RecommendedPage.module.css';
 
 export default function RecommendedPage() {
   return (
-    <div className={css.pageContainer}>
-      <Dashboard />
-      <RecommendedList />
-    </div>
+    <>
+      <DocumentTitle>ReadJourney — Recommended</DocumentTitle>
+      <div className={css.pageContainer}>
+        <Dashboard />
+        <RecommendedList />
+      </div>
+    </>
   );
 }

@@ -2,6 +2,7 @@ import css from './SignUpPage.module.css';
 import { Link } from 'react-router-dom';
 import SignUpForm from '../../components/SignUpForm/SignUpForm.jsx';
 import { useMediaQuery } from 'react-responsive';
+import DocumentTitle from '../../components/ui/DocumentTitle.jsx';
 
 export default function SignUpPage() {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -11,6 +12,7 @@ export default function SignUpPage() {
 
   return (
     <>
+      <DocumentTitle>ReadJourney — SignUp</DocumentTitle>
       <div className={css.signPageWrapper}>
         <div className={css.signWrapper}>
           <header className={css.signHeader}>
