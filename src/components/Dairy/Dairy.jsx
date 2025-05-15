@@ -55,12 +55,7 @@ export default function Dairy() {
                     new Date(a.finishReading).getTime()
                 )
                 .map(entry => (
-                  <DairyEntry
-                    key={entry._id}
-                    entry={entry}
-                    book={book}
-                    isTopEntry={index === 0}
-                  />
+                  <DairyEntry key={entry._id} entry={entry} book={book} />
                 ))}
             </ul>
           </li>

@@ -1,6 +1,6 @@
 import css from './ReadingForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';

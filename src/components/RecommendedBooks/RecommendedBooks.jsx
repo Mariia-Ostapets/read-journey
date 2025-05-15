@@ -1,12 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './RecommendedBooks.module.css';
-import {
-  selectAllBooks,
-  selectBooks,
-  selectIsLoading,
-} from '../../redux/books/selectors';
+import { selectAllBooks, selectIsLoading } from '../../redux/books/selectors';
 import { useEffect } from 'react';
-import { getAllBooks, getRecommendedBooks } from '../../redux/books/operations';
+import { getAllBooks } from '../../redux/books/operations';
 import NoResults from '../ui/NoResults/NoResults';
 import Loader from '../ui/Loader/Loader';
 import RecommendedBooksItem from '../RecommendedBooksItem/RecommendedBooksItem';
@@ -14,15 +10,10 @@ import { Link } from 'react-router-dom';
 import { getRandomBooks } from '../../utils';
 
 export default function RecommendedBooks() {
-  // const books = useSelector(selectBooks);
   const books = useSelector(selectAllBooks);
   const loading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getRecommendedBooks());
-  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(getAllBooks());

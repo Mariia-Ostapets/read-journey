@@ -9,10 +9,8 @@ import {
 import { useEffect, useState } from 'react';
 import { addBookById, getRecommendedBooks } from '../../redux/books/operations';
 import Loader from '../ui/Loader/Loader';
-import { getBooksPerPage } from '../../utils';
 import RecommendedItem from '../RecommendedItem/RecommendedItem';
 import Pagination from '../ui/Pagination/Pagination';
-import { useMediaQuery } from 'react-responsive';
 import ModalForm from '../ui/ModalForm/ModalForm';
 import Button from '../ui/Button/Button';
 import toast from 'react-hot-toast';
@@ -38,10 +36,6 @@ export default function RecommendedList() {
   const titleFilter = useSelector(selectTitleFilter);
   const authorFilter = useSelector(selectAuthorFilter);
 
-  // const isMobile = useMediaQuery({ maxWidth: 767 });
-  // const isTablet = useMediaQuery({ maxWidth: 1279 });
-
-  // const limit = getBooksPerPage({ isMobile, isTablet });
   const [limit, setLimit] = useState(() => {
     const width = window.innerWidth;
     if (width >= 1280) return 10;

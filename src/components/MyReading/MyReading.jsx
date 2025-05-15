@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import css from './MyReading.module.css';
 import { selectReadingBook } from '../../redux/books/selectors';
-import Button from '../ui/Button/Button';
 import { getBookStatus } from '../../utils';
 
 export default function MyReading() {

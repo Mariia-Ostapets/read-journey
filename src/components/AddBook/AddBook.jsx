@@ -16,9 +16,6 @@ const schema = yup.object().shape({
   author: yup.string().required('Author is required'),
   pages: yup
     .number()
-    // .transform((value, originalValue) =>
-    //   String(originalValue).trim() === '' ? undefined : Number(originalValue)
-    // )
     .required('Pages are required')
     .typeError('Pages must be a number')
     .positive('Must be positive')

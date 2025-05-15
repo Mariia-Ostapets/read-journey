@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axiosInstance';
-import toast from 'react-hot-toast';
 
 export const getRecommendedBooks = createAsyncThunk(
   'books/recommended',
@@ -18,9 +17,6 @@ export const getRecommendedBooks = createAsyncThunk(
       if (page > data.totalPages) page = 1;
       return { ...data, page };
     } catch (error) {
-      // if (error.response?.status === 401) {
-      //   toast.error('Unauthorized. Please log in.');
-      // }
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }

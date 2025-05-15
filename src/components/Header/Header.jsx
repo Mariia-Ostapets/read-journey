@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import { useEffect, useState } from 'react';
 import MobMenu from '../MobMenu/MobMenu';
-import { useMediaQuery } from 'react-responsive';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function Header() {
@@ -26,9 +25,6 @@ export default function Header() {
   const closeMenu = () => {
     setIsOpen(false);
   };
-
-  // const isMobile = useMediaQuery({ maxWidth: 767 });
-  // const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   const deviceType = useDeviceType();
 

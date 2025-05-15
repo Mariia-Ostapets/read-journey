@@ -35,13 +35,11 @@ export default function ModalForm({
     if (variant === 'book') {
       variantStyles = {
         width: isMobile ? '335px' : '500px',
-        // maxHeight: isMobile ? '439px' : '483px',
         padding: isMobile ? '40px' : '50px',
       };
     } else if (variant === 'notification') {
       variantStyles = {
         width: isMobile ? '335px' : '342px',
-        // maxHeight: isMobile ? '290px' : '308px',
         padding: isMobile ? '60px 46px' : '50px',
       };
     }

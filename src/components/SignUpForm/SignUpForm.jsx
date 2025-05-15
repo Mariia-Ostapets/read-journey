@@ -57,7 +57,6 @@ export default function SignUpForm() {
       toast.success('User was successfully registered!');
     } catch (error) {
       reset();
-      // console.error(error);
     }
   };
 
