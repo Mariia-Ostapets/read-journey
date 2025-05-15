@@ -1,4 +1,4 @@
-# ![books](./public/images/books-mob.png) Read Journey App
+# ![icon-logo](./public/logo.svg) Read Journey App
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-brightgreen)](https://read-journey-one-sepia.vercel.app/login)
 
@@ -8,15 +8,15 @@ reach your reading goals.
 
 ## 🖼️ Preview
 
-**📊 Register Page**
+**Register Page**
 
 ![Register Preview](./public/images/registration.png)
 
-**🏢 Recommended Page**
+**Recommended Page**
 
 ![Recommended Preview](./public/images/recommendations.png)
 
-**🏢 Reading Page**
+**Reading Page**
 
 ![Reading Preview](./public/images/diary.png)
 
