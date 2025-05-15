@@ -11,6 +11,7 @@ import {
   selectIsRefreshing,
 } from '../../redux/auth/selectors.js';
 import { getCurrentUser } from '../../redux/auth/operations.js';
+import toast from 'react-hot-toast';
 
 const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage'));

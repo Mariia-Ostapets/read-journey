@@ -85,3 +85,29 @@
     max-width: 75px;
   }
 }
+
+.deleteDairyItemBtn {
+  display: block;
+  outline: transparent;
+  background-color: transparent;
+  border: none;
+  padding-top: 2px;
+  stroke: var(--primary-color-gray);
+  transition: stroke var(--primary-transition);
+}
+
+@media screen and (min-width: 768px) {
+  .deleteDairyItemBtn {
+    padding-top: 6px;
+  }
+}
+
+.deleteDairyItemBtn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.deleteDairyItemBtn:hover,
+.deleteDairyItemBtn:focus {
+  stroke: var(--accent-color-red);
+}

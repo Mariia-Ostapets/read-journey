@@ -1,6 +1,6 @@
 import css from './ReadingForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
@@ -54,6 +54,21 @@ export default function ReadingForm() {
       }
       return max;
     }, 0) || 0;
+
+  useEffect(() => {
+    if (!book) return;
+
+    if (book.status === 'done') {
+      reset({ page: 'This book is read' });
+      return;
+    }
+
+    const isFirstSession = !book?.progress || book.progress.length === 0;
+
+    reset({
+      page: isFirstSession ? 1 : maxReadPage + 1,
+    });
+  }, [book, reset, maxReadPage]);
 
   const dispatch = useDispatch();
 
@@ -163,6 +178,7 @@ export default function ReadingForm() {
     !errors.page;
 
   const bookStatus = getBookStatus(book);
+  const isDisabled = book.status === 'done';
 
   return (
     <>
@@ -211,6 +227,7 @@ export default function ReadingForm() {
               className={clsx(css.pagesInput, {
                 [css.inputValid]: isValidPage,
                 [css.inputInvalid]: errors.page,
+                [css.disabled]: isDisabled,
               })}
               id={pageId}
               type="text"
@@ -223,7 +240,13 @@ export default function ReadingForm() {
             <p className={css.errorMessage}>{errors.page.message}</p>
           )}
 
-          <Button type="submit" variant="start">
+          <Button
+            type="submit"
+            variant="start"
+            className={clsx(css.startBtn, {
+              [css.disabled]: isDisabled,
+            })}
+          >
             To start
           </Button>
         </form>

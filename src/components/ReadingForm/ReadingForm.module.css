@@ -14,3 +14,48 @@
 .formLabelAuthorPages {
   top: 50%;
 }
+
+.pagesInput.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.startBtn {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.02em;
+  color: var(--primary-color-white);
+  outline: transparent;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  background-color: transparent;
+  border-radius: 30px;
+  padding: 10px 20px;
+  height: 38px;
+  margin-top: 20px;
+  transition: color var(--primary-transition),
+    background-color var(--primary-transition),
+    border-color var(--primary-transition);
+}
+
+@media screen and (min-width: 768px) {
+  .startBtn {
+    padding: 12px 28px;
+    height: 42px;
+    font-size: 16px;
+    line-height: 1.13;
+  }
+}
+
+.startBtn:hover,
+.startBtn:focus {
+  border: none;
+  color: var(--primary-bgr-color-gray);
+  background-color: var(--primary-color-white);
+}
+
+.startBtn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

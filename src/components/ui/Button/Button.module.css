@@ -159,20 +159,3 @@
   top: 16px;
   right: 16px;
 }
-
-.deleteDairyItemBtn {
-  padding-top: 2px;
-  stroke: var(--primary-color-gray);
-  transition: stroke var(--primary-transition);
-}
-
-@media screen and (min-width: 768px) {
-  .deleteDairyItemBtn {
-    padding-top: 6px;
-  }
-}
-
-.deleteDairyItemBtn:hover,
-.deleteDairyItemBtn:focus {
-  stroke: var(--accent-color-red);
-}

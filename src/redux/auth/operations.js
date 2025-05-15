@@ -55,6 +55,26 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
+export const refreshToken = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.refreshToken;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('No refresh token');
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const res = await api.get('/users/current/refresh');
+      const newToken = res.data.token;
+      setAuthHeader(newToken);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getCurrentUser = createAsyncThunk(
   'auth/current',
   async (_, thunkAPI) => {
@@ -78,26 +98,6 @@ export const getCurrentUser = createAsyncThunk(
         }
       }
 
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const refreshToken = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.refreshToken;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('No refresh token');
-    }
-    setAuthHeader(persistedToken);
-    try {
-      const res = await api.get('/users/current/refresh');
-      const newToken = res.data.token;
-      setAuthHeader(newToken);
-      return res.data;
-    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }

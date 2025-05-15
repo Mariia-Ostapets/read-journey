@@ -16,9 +16,9 @@ const schema = yup.object().shape({
   author: yup.string().required('Author is required'),
   pages: yup
     .number()
-    .transform((value, originalValue) =>
-      String(originalValue).trim() === '' ? undefined : Number(originalValue)
-    )
+    // .transform((value, originalValue) =>
+    //   String(originalValue).trim() === '' ? undefined : Number(originalValue)
+    // )
     .required('Pages are required')
     .typeError('Pages must be a number')
     .positive('Must be positive')
@@ -42,6 +42,7 @@ export default function AddBook() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       title: '',
       author: '',
@@ -92,6 +93,7 @@ export default function AddBook() {
   const isValidTitle = title?.trim().length > 0 && !errors.title;
   const isValidAuthor = author?.trim().length > 0 && !errors.author;
   const isValidPages =
+    typeof pages === 'string' &&
     pages !== '' &&
     !isNaN(pages) &&
     Number(pages) > 0 &&
@@ -119,7 +121,7 @@ export default function AddBook() {
           />{' '}
           {renderIcon(isValidTitle, errors.title)}
         </div>
-        {isValidTitle && <p className={css.successMessage}>Title is secure</p>}
+        {isValidTitle && <p className={css.successMessage}>Title is valid</p>}
         {errors.title && (
           <p className={css.errorMessage}>{errors.title.message}</p>
         )}
@@ -143,9 +145,7 @@ export default function AddBook() {
           />
           {renderIcon(isValidTitle, errors.author)}
         </div>
-        {isValidAuthor && (
-          <p className={css.successMessage}>Author is secure</p>
-        )}
+        {isValidAuthor && <p className={css.successMessage}>Author is valid</p>}
         {errors.author && (
           <p className={css.errorMessage}>{errors.author.message}</p>
         )}
@@ -164,9 +164,9 @@ export default function AddBook() {
             type="text"
             placeholder="0"
           />
-          {renderIcon(isValidTitle, errors.pages)}
+          {renderIcon(isValidPages, errors.pages)}
         </div>
-        {isValidPages && <p className={css.successMessage}>Pages are secure</p>}
+        {isValidPages && <p className={css.successMessage}>Pages are valid</p>}
         {errors.pages && (
           <p className={css.errorMessage}>{errors.pages.message}</p>
         )}
@@ -176,15 +176,13 @@ export default function AddBook() {
         </Button>
       </form>
 
-      {showSuccessModal && (
-        <ModalForm
-          modalIsOpen={showSuccessModal}
-          closeModal={closeSuccessModal}
-          variant="notification"
-        >
-          <Info />
-        </ModalForm>
-      )}
+      <ModalForm
+        modalIsOpen={showSuccessModal}
+        closeModal={closeSuccessModal}
+        variant="notification"
+      >
+        {showSuccessModal && <Info />}
+      </ModalForm>
     </>
   );
 }
